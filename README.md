@@ -8,7 +8,7 @@ Design & Code of the front-end of acemfes news website
 
 ## Single Article Page
 
-![Design](https://github.com/alfahami/news-acemfes/blob/master/Design/single-article.png, "Singlz Article Page")
+![Design](https://github.com/alfahami/news-acemfes/blob/master/Design/single-article.png "Singl Article Page")
 
 ## About Page
 
