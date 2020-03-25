@@ -1,6 +1,7 @@
 # ACEM FES NEWS official website
 
-Design & Code of the front-end of acemfes news website
+Design & Code of the front-end of acemfes news website\
+The design is done using Photoshop
 
 ## Home Page 
 
