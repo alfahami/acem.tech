@@ -442,16 +442,11 @@ textarea::placeholder {
   margin-right: 0.5rem;
 }
 
-
-
-
-
-
 /* Footer */
 #main-footer {
   background: #333;
   color: #fff;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 #main-footer .footer-container {
