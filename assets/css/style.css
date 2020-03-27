@@ -1,4 +1,4 @@
-  :root {
+:root {
     --primary-color: #009900;
     --secondary-color: rgba(0, 109, 0, 0.9);
     --light-color: #f3f3f3;
@@ -25,8 +25,8 @@
 
   html, body {
     font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    line-height: 1.4;
+    line-height: 1.2;
+    font-weight: normal;
     background: var(--gray-color);
   }
 
@@ -36,6 +36,11 @@
     font-weight: bold;
     line-height: 1.7;
     color: #000;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 
   a {
@@ -54,6 +59,10 @@
     max-width: 1100px;
     margin: 0 auto;
     overflow: hidden;
+  }
+
+  .logo {
+    width: 148px;
   }
 
   .category {
@@ -82,17 +91,17 @@
     padding: 0.75rem;
     cursor: pointer;
     border-radius: 2px;
-    border: 1px solid var(--primary-color);
   }
 
   .btn-primary { 
     background: var(--primary-color);
     transition: all 0.4s ease-in-out;
+    color: var(--light-color);
    }
 
   .btn-primary:hover { 
     background: var(--secondary-color); 
-    border: solid 1px var(--secondary-color);
+    border: none;
     box-shadow: rgba(0, 0, 0, 0.6);
   }
 
@@ -101,7 +110,7 @@
   .py-3 { padding: 3rem 0; }
 
   .bg-dark { background: var(--dark-color); }
-  .bg-light { background: var(--light-color); }
+  .bg-light { background: #fff; }
 
   .article-heading {
     font-size: 1rem;
@@ -110,10 +119,15 @@
   }
 
   .list li {
-    margin: 1.4rem 0;
+    font-size: 0.95rem;
+    margin: 1rem 0;
     padding-bottom: 0.5rem;
     border-bottom: dotted .5px var(--light-color);
     width: 90%;
+  }
+
+  .list li:last-child {
+    border-bottom: none;
   }
  
  /* Navbar */
@@ -156,21 +170,52 @@
    border-color: var(--primary-color);
  }
 
- ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+ /* Input placeholder CSS style */
+
+ form input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-size: 0.95rem;
   color: #ccc;
 }
-::-moz-placeholder { /* Firefox 19+ */
+form input::-moz-placeholder { /* Firefox 19+ */
   font-size: 1rem;
   color: #ccc;
 }
-:-ms-input-placeholder { /* IE 10+ */
+form input:-ms-input-placeholder { /* IE 10+ */
   font-size: 1rem;
   color: #ccc;
 }
-:-moz-placeholder { /* Firefox 18- */
+form input:-moz-placeholder { /* Firefox 18- */
+  font-size: 1rem;
   color: #ccc;
 }
+
+/* Textarea Placeholder CSS Style */
+textarea::-webkit-input-placeholder { 
+  font-size: 1rem;
+  color: #ccc; 
+} 
+
+/* Firefox 18- */ 
+textarea:-moz-placeholder { 
+  font-size: 1rem;
+  color: #ccc;  
+} 
+
+/* Firefox 19+ */ 
+textarea::-moz-placeholder { 
+  font-size: 1rem;
+  color: #ccc;
+} 
+
+textarea:-ms-input-placeholder { 
+  font-size: 1rem;
+  color: #ccc;  
+} 
+
+textarea::placeholder { 
+  font-size: 1rem;
+  color: #ccc; 
+} 
 
  #main-navbar .container .logo-search form a > i {
   position: absolute;
@@ -265,7 +310,7 @@
 
 /* Article Home */
 #home-article .container h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -293,19 +338,15 @@
   margin-bottom: 0.75rem;
 }
 
-
-#home-article .container .article-container > :nth-child(odd) img {
-  height: 100%;
-  width: 100%;
+#home-article .container .article-container > :nth-child(even) img {
+  width: 345px;
+  height: 230px;
 }
 
 #home-article .container .article-container > :nth-child(even) img {
   margin-top: 0.3rem;
-}
-
-#home-article .article-container article p {
-  text-align: justify;
-  text-align-last: left;
+  width: 358px;
+  height: 96px;
 }
 
 #home-article .article-container .card.bg-dark {
@@ -341,13 +382,17 @@
 #main-footer a:hover {
   color: var(--light-color);
 }
+
+#main-footer  img.logo {
+  height: 42px;
+}
 #main-footer .footer-container .acem-news-fes-about p {
   margin-bottom: 0.75rem;
 }
 
 #main-footer .footer-container .acemfes-site-map h4 {
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 #main-footer .container form#contact-form input,
@@ -370,16 +415,22 @@
   border-color: var(--primary-color);
 }
 
+#main-footer .container form#contact-form input[type="submit"] {
+  color: var(--light-color);
+  font-weight: 700;
+  border: none;
+}
+
 #main-footer .container .author-copyright {
   background: #444;
   grid-column: 1 / span 3;
   text-align: center;
-  padding: 0.8rem;
-  border-radius: 8px;
+  padding: 0.3rem;
+  border-radius: 2px;
 }
 
 #main-footer .container .author-copyright p {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.3rem;
 }
 
 
