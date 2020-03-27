@@ -87,6 +87,7 @@
     display: inline-block;
     width: auto;
     color: #fff;
+    font-family: "Quicksand", sans-serif;
     background: #333;
     padding: 0.75rem;
     cursor: pointer;
@@ -95,7 +96,7 @@
 
   .btn-primary { 
     background: var(--primary-color);
-    transition: all 0.4s ease-in-out;
+    transition: all 0.5s ease-in-out;
     color: var(--light-color);
    }
 
@@ -103,6 +104,7 @@
     background: var(--secondary-color); 
     border: none;
     box-shadow: rgba(0, 0, 0, 0.6);
+    text-shadow: 0.1rem 0.1rem 0.18rem #333;
   }
 
   .py-1 { padding: 0.75rem 0; }
@@ -416,9 +418,15 @@ textarea::placeholder {
 }
 
 #main-footer .container form#contact-form input[type="submit"] {
-  color: var(--light-color);
+  color: var(--dark-color);
+  font-size: 0.9rem;
   font-weight: 700;
+  font-family: "Quicksand", sans-serif;
   border: none;
+}
+
+#main-footer .container form#contact-form input[type="submit"]:hover {
+  color: #f4f4f4;
 }
 
 #main-footer .container .author-copyright {
