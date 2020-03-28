@@ -27,7 +27,7 @@
 html,
 body {
   font-family: "Lato", sans-serif;
-  line-height: 1.2;
+  line-height: normal;
   font-weight: normal;
   font-size: 1rem;
   background: var(--gray-color);
@@ -253,6 +253,10 @@ ul {
 #main-navbar .container form {
   margin-left: 0.7rem;
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 #main-navbar .container .logo-search form input {
@@ -323,6 +327,8 @@ textarea::placeholder {
   position: absolute;
   top: 10px;
   left: 138%;
+  bottom: auto;
+  right: auto;
   color: #ccc;
 }
 
@@ -431,12 +437,30 @@ textarea::placeholder {
   align-items: center;
 }
 
+#home-article .container .article-container > :nth-child(odd) div > div,
+#home-article .container .article-container > *:nth-child(even) div > div {
+ align-self: flex-start;
+ position: absolute;
+ top: 0.5rem;
+ bottom: auto;
+ left: auto;
+ right: auto;
+}
+
 #home-article .container .article-container > *:nth-child(even) {
   grid-column: 3 / span 2;
 }
 
 #home-article .container .article-container > *:nth-child(even) img {
   margin-top: 0.3rem;
+}
+
+#home-article .container .article-container article {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #home-article .container .article-container article p {
