@@ -39,8 +39,9 @@ h3,
 h4,
 h5,
 h6 {
+  /*font-family: 'Karla', sans-serif;*/
   font-family: "Quicksand", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.7;
   color: #000;
@@ -83,6 +84,7 @@ ul {
   color: #fff;
   font-size: 0.6rem;
   text-transform: uppercase;
+  font-family: 'Quicksand', sans-serif;
   padding: 0.4rem 0.6rem;
   border-radius: 16px;
   margin-bottom: 0.1rem;
@@ -398,7 +400,7 @@ textarea::placeholder {
 #showcase .showcase-container .showcase-content h1 {
   color: #fff;
   text-transform: uppercase;
-  font-size: 1.79rem;
+  font-size: 1.7rem;
 }
 
 #showcase .showcase-container .showcase-content p {
@@ -482,7 +484,7 @@ textarea::placeholder {
 /* About Page*/
 #about .page-container .about.card h1 {
   letter-spacing: -10;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 #about .page-container .about.card article p:last-child {
@@ -519,7 +521,6 @@ textarea::placeholder {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--primary-color);
-  margin: 1rem 0;
   font-size: 1.6rem;
 }
 
