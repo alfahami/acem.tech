@@ -1,7 +1,7 @@
 # ACEM FES NEWS official website
 
 Design & Code of the front-end of acemfes news website\
-The design is done using Photoshop
+[Live Demo](https://alfahami.github.io/news-acemfes/) | Design: Photoshop | Coding: HTML/CSS 
 
 ## Home Page 
 
