@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #009900;
-  --secondary-color: rgba(0, 109, 0, 0.9);
+  --primary-color: #3ebe4e;
+  --secondary-color: #009900;
   --light-color: #f3f3f3;
   --gray-color: #ccc;
   --dark-color: #333;
@@ -57,11 +57,11 @@ img {
 
 a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 a:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 ul {
@@ -161,14 +161,13 @@ ul {
 .btn-primary {
   background: var(--primary-color);
   transition: all 0.5s ease-in-out;
-  color: var(--light-color);
+  color: var(--dark-color);
 }
 
 .btn-primary:hover {
   background: var(--secondary-color);
   border: none;
   box-shadow: rgba(0, 0, 0, 0.6);
-  text-shadow: 0.1rem 0.1rem 0.18rem #333;
 }
 
 .btn-secondary {
@@ -184,7 +183,6 @@ ul {
   color: #fff;
   background: var(--dark-color);
   box-shadow: rgba(0, 0, 0, 0.6);
-  text-shadow: 0.1rem 0.1rem 0.18rem #333;
 }
 
 .btn-block {
@@ -526,7 +524,9 @@ textarea::placeholder {
 }
 
 #showcase .showcase-container .showcase-content a {
-  color: #fff;
+  color: #f4f4f4;
+  font-variant: small-caps;
+  font-weight: 600;
 }
 
 #showcase .showcase-container .showcase-content .btn.btn-primary {
@@ -582,12 +582,22 @@ textarea::placeholder {
 }
 
 @media (max-height: 600px) {
+  .btn {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
   #showcase .showcase-container {
     display: grid;
     grid-template-columns: 1fr;
+    align-items: center;
   }
   #showcase {
     height: 90vh;
+  }
+
+  #showcase::before {
+    height: 100%;
   }
   #showcase .showcase-container .showcase-content h1 {
     font-size: 1.5rem;
@@ -874,8 +884,7 @@ textarea::placeholder {
 
   #article .page-container .meta {
     float: left;
-    padding: 0.5rem
-
+    padding: 0.5rem;
   }
 }
 
@@ -961,7 +970,7 @@ textarea::placeholder {
     display: block;
   }
 
- .list li {
+  .list li {
     width: 100%;
   }
 }
