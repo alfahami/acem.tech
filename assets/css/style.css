@@ -1,6 +1,6 @@
 :root {
   --primary-color: #3ebe4e;
-  --secondary-color: #009900;
+  --secondary-color: #098409;
   --light-color: #f3f3f3;
   --gray-color: #ccc;
   --dark-color: #333;
@@ -30,7 +30,7 @@ body {
   line-height: normal;
   font-weight: normal;
   font-size: 1rem;
-  background: var(--gray-color);
+  background: var(--light-color);
 }
 
 h1,
