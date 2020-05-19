@@ -30,6 +30,7 @@ body {
   line-height: normal;
   font-weight: normal;
   font-size: 1rem;
+  color: #444;
   background: var(--light-color);
 }
 
@@ -52,7 +53,7 @@ p {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
 }
 
 a {
@@ -640,6 +641,8 @@ textarea::placeholder {
 
 #home-article .container .article-container > *:nth-child(even) img {
   margin-top: 0.3rem;
+  display: block;
+  max-height: 70px;
 }
 
 #home-article .container .article-container article {
@@ -747,6 +750,11 @@ textarea::placeholder {
 }
 
 /* About Page*/
+
+#article,
+#about {
+  line-height: 1.5;
+}
 #about .page-container .about.card h1 {
   letter-spacing: -10;
   font-size: 1.3rem;
