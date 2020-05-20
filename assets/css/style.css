@@ -771,7 +771,7 @@ textarea::placeholder {
 
 #about .page-container .about.card h1 {
   letter-spacing: -10;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 #about .page-container .about.card article p:last-child {
@@ -924,6 +924,7 @@ textarea::placeholder {
 
 #main-footer a {
   color: var(--primary-color);
+  font-family: "Exo", sans-serif;
 }
 
 #main-footer a:hover {
@@ -935,6 +936,9 @@ textarea::placeholder {
 }
 #main-footer .footer-container .acem-news-fes-about p {
   margin-bottom: 0.75rem;
+}
+
+#main-footer .acem-news-fes-site-map ul.list li a {
 }
 
 #main-footer .footer-container h4 {
@@ -963,10 +967,10 @@ textarea::placeholder {
 }
 
 #main-footer .container form#contact-form input[type="submit"] {
-  color: var(--dark-color);
+  color: var(--light-color);
   font-size: 0.9rem;
   font-weight: 700;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
   border: none;
   border-radius: 0;
 }
