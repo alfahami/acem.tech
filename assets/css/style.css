@@ -26,11 +26,15 @@
 
 html,
 body {
-  font-family: "Lato", sans-serif;
+  /* font-family: "Lato", sans-serif; */
+  /* font-family: "Exo", sans-serif; */
+  /* font-family: "Merriweather", serif; */
+  font-family: "Open Sans", sans-serif;
   line-height: normal;
   font-weight: normal;
   font-size: 1rem;
-  color: #444;
+  color: #333;
+  line-height: 1.4;
   background: var(--light-color);
 }
 
@@ -41,11 +45,16 @@ h4,
 h5,
 h6 {
   /*font-family: 'Karla', sans-serif;*/
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
+  font-family: "Merriweather", serif;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.7;
   color: #000;
+}
+
+h3 {
+  letter-spacing: 0.2px;
 }
 
 p {
@@ -151,7 +160,9 @@ ul {
   display: inline-block;
   width: auto;
   color: #fff;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif;
+   */
+  font-family: "Merriweather", serif;
   background: #333;
   padding: 0.75rem;
   text-align: center;
@@ -159,14 +170,16 @@ ul {
 }
 
 .btn-primary {
-  background: var(--primary-color);
+  background: var(--secondary-color);
   transition: all 0.5s ease-in-out;
-  color: var(--dark-color);
+  color: var(--light-color);
+  opacity: 0.8;
 }
 
 .btn-primary:hover {
-  background: var(--secondary-color);
+  /* background: var(--primary-color); */
   border: none;
+  opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.6);
 }
 
@@ -209,6 +222,10 @@ ul {
 .bg-green {
   background: var(--secondary-color);
   color: #f4f4f4;
+}
+
+.p-news {
+  line-height: 1.6;
 }
 
 .article-heading {
@@ -347,7 +364,8 @@ textarea::placeholder {
   margin: 0 0.75rem;
   font-size: 0.8rem;
   text-transform: uppercase;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
+  font-family: "Exo", sans-serif;
   font-weight: bold;
   color: #000;
 }
@@ -513,7 +531,7 @@ textarea::placeholder {
 #showcase .showcase-container .showcase-content h1 {
   color: #fff;
   text-transform: uppercase;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 #showcase .showcase-container .showcase-content p {
@@ -751,10 +769,6 @@ textarea::placeholder {
 
 /* About Page*/
 
-#article,
-#about {
-  line-height: 1.5;
-}
 #about .page-container .about.card h1 {
   letter-spacing: -10;
   font-size: 1.3rem;
