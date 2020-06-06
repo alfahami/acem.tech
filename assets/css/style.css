@@ -150,11 +150,13 @@ ul {
   text-transform: capitalize !important;
 }
 .text-lowercase {
-  text-transform: lowercase;
+  text-transform: lowercase !important;
 }
 .text-bold {
   font-weight: bold;
 }
+
+.text-center { text-align: center;}
 
 .btn {
   display: inline-block;
@@ -203,6 +205,21 @@ ul {
   margin: 0.7rem 0;
 }
 
+.form-group {
+   margin-bottom: 1.5rem;
+}
+
+.form-group label {padding-bottom: 5px;}
+.form-group label {
+  display: block;
+}
+
+.form-group input{
+  height: 40px;
+  outline: none;
+  padding: 0 5px;
+  border: solid 1px var(--secondary-color);
+}
 .py-1 {
   padding: 0.75rem 0;
 }
@@ -358,6 +375,10 @@ textarea::placeholder {
   justify-content: center;
   text-align: center;
   align-items: center;
+}
+
+#main-navbar .container ul li:nth-child(2){
+  border-right: solid 2px var(--primary-color);
 }
 
 #main-navbar .container ul li a {
@@ -909,6 +930,57 @@ textarea::placeholder {
   }
 }
 
+/* Register & Login Page */
+#register-form {
+  width: 400px;
+  margin: 0.875rem auto;  
+}
+
+#register-form label,
+#login-form label {
+  font-weight: 700;
+}
+
+#login-form {
+  width: 400px;
+  margin: 0 auto;
+}
+
+
+#register-form input,
+#login-form input {
+  width: 100%;
+}
+
+#register-form input:hover,
+#login-form input:hover {
+  outline: thick;
+  border: solid 2px var(--primary-color);
+}
+
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"],
+#login-form input[type="text"],
+#login-form input[type="email"],
+#login-form input[type="password"] {
+  font-family: "Exo", sans-serif;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+@media(max-width: 500px){
+  #register-form input {
+    width: 100%;
+  }
+}
+
+@media(max-width: 900px){
+  #register-form input {
+    width: 60%;
+  }
+}
+
 /* Footer */
 #main-footer {
   background: #333;
@@ -936,9 +1008,6 @@ textarea::placeholder {
 }
 #main-footer .footer-container .acem-news-fes-about p {
   margin-bottom: 0.75rem;
-}
-
-#main-footer .acem-news-fes-site-map ul.list li a {
 }
 
 #main-footer .footer-container h4 {
