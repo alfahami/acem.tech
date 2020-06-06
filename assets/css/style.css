@@ -970,14 +970,16 @@ textarea::placeholder {
 }
 
 @media(max-width: 500px){
-  #register-form input {
-    width: 100%;
+  #register h3,
+  #login h3 {
+    font-size: 1rem;
   }
 }
 
-@media(max-width: 900px){
-  #register-form input {
-    width: 60%;
+@media (max-width: 400px){
+  #register-form,
+  #login-form {
+    width: 100%;
   }
 }
 
