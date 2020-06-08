@@ -29,7 +29,7 @@ body {
   /* font-family: "Lato", sans-serif; */
   /* font-family: "Exo", sans-serif; */
   /* font-family: "Merriweather", serif; */
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: normal;
   font-weight: normal;
   font-size: 1rem;
@@ -46,7 +46,7 @@ h5,
 h6 {
   /*font-family: 'Karla', sans-serif;*/
   /* font-family: "Quicksand", sans-serif; */
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.7;
@@ -94,7 +94,7 @@ ul {
   color: #fff;
   font-size: 0.6rem;
   text-transform: uppercase;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   padding: 0.4rem 0.6rem;
   border-radius: 16px;
   margin-bottom: 0.1rem;
@@ -156,7 +156,9 @@ ul {
   font-weight: bold;
 }
 
-.text-center { text-align: center;}
+.text-center {
+  text-align: center;
+}
 
 .btn {
   display: inline-block;
@@ -164,7 +166,7 @@ ul {
   color: #fff;
   /* font-family: "Quicksand", sans-serif;
    */
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   background: #333;
   padding: 0.75rem;
   text-align: center;
@@ -206,15 +208,17 @@ ul {
 }
 
 .form-group {
-   margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.form-group label {padding-bottom: 5px;}
+.form-group label {
+  padding-bottom: 5px;
+}
 .form-group label {
   display: block;
 }
 
-.form-group input{
+.form-group input {
   height: 40px;
   outline: none;
   padding: 0 5px;
@@ -228,6 +232,10 @@ ul {
 }
 .py-3 {
   padding: 3rem 0;
+}
+
+.mb-1 {
+  margin-bottom: 0.875rem;
 }
 
 .bg-dark {
@@ -261,6 +269,27 @@ ul {
 
 .list li:last-child {
   border-bottom: none;
+}
+
+.alert {
+  padding: 1rem 0.875rem;
+  margin-bottom: 0.5rem;
+  background: #eee;
+  border-radius: 1px;
+}
+
+.alert-success {
+  background: var(--secondary-color);
+  color: var(--light-color);
+}
+
+.alert-danger {
+  background: #ff3f3f;
+  color: #fff;
+}
+
+.alert-default {
+  background: var(--gray-color);
 }
 
 /* Navbar */
@@ -377,7 +406,7 @@ textarea::placeholder {
   align-items: center;
 }
 
-#main-navbar .container ul li:nth-child(2){
+#main-navbar .container ul li:nth-child(2) {
   border-right: solid 2px var(--primary-color);
 }
 
@@ -386,7 +415,7 @@ textarea::placeholder {
   font-size: 0.8rem;
   text-transform: uppercase;
   /* font-family: "Quicksand", sans-serif; */
-  font-family: "Exo", sans-serif;
+  font-family: 'Exo', sans-serif;
   font-weight: bold;
   color: #000;
 }
@@ -525,8 +554,8 @@ textarea::placeholder {
 }
 
 #showcase::before {
-  content: "";
-  background: #000 url("../images/showcase.png") no-repeat top center/cover;
+  content: '';
+  background: #000 url('../images/showcase.png') no-repeat top center/cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -578,7 +607,7 @@ textarea::placeholder {
   }
 
   #showcase:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -933,7 +962,7 @@ textarea::placeholder {
 /* Register & Login Page */
 #register-form {
   width: 400px;
-  margin: 0.875rem auto;  
+  margin: 0.875rem auto;
 }
 
 #register-form label,
@@ -946,7 +975,6 @@ textarea::placeholder {
   margin: 0 auto;
 }
 
-
 #register-form input,
 #login-form input {
   width: 100%;
@@ -958,25 +986,25 @@ textarea::placeholder {
   border: solid 2px var(--primary-color);
 }
 
-#register-form input[type="text"],
-#register-form input[type="email"],
-#register-form input[type="password"],
-#login-form input[type="text"],
-#login-form input[type="email"],
-#login-form input[type="password"] {
-  font-family: "Exo", sans-serif;
+#register-form input[type='text'],
+#register-form input[type='email'],
+#register-form input[type='password'],
+#login-form input[type='text'],
+#login-form input[type='email'],
+#login-form input[type='password'] {
+  font-family: 'Exo', sans-serif;
   font-size: 1.2rem;
   color: #444;
 }
 
-@media(max-width: 500px){
+@media (max-width: 500px) {
   #register h3,
   #login h3 {
     font-size: 1rem;
   }
 }
 
-@media (max-width: 400px){
+@media (max-width: 400px) {
   #register-form,
   #login-form {
     width: 100%;
@@ -998,7 +1026,7 @@ textarea::placeholder {
 
 #main-footer a {
   color: var(--primary-color);
-  font-family: "Exo", sans-serif;
+  font-family: 'Exo', sans-serif;
 }
 
 #main-footer a:hover {
@@ -1037,7 +1065,7 @@ textarea::placeholder {
   border-color: var(--primary-color);
 }
 
-#main-footer .container form#contact-form input[type="submit"] {
+#main-footer .container form#contact-form input[type='submit'] {
   color: var(--light-color);
   font-size: 0.9rem;
   font-weight: 700;
@@ -1046,7 +1074,7 @@ textarea::placeholder {
   border-radius: 0;
 }
 
-#main-footer .container form#contact-form input[type="submit"]:hover {
+#main-footer .container form#contact-form input[type='submit']:hover {
   color: #f4f4f4;
 }
 
