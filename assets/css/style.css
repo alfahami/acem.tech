@@ -224,6 +224,10 @@ ul {
   padding: 0 5px;
   border: solid 1px var(--secondary-color);
 }
+
+.form-group .is-invalid {
+  border: solid 1px red !important;
+}
 .py-1 {
   padding: 0.75rem 0;
 }
@@ -277,19 +281,32 @@ ul {
   background: #eee;
   border-radius: 1px;
 }
+.alert p {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 
 .alert-success {
-  background: var(--secondary-color);
-  color: var(--light-color);
+  background: rgba(9, 123, 9, 0.2);
+  color: var(--secondary-color);
 }
 
 .alert-danger {
-  background: #ff3f3f;
-  color: #fff;
+  background: rgba(255, 63, 63, 0.2);
+  color: #ff3f3f;
 }
 
 .alert-default {
-  background: var(--gray-color);
+  background: rgba(204, 204, 204, 0.7);
+  color: #444;
+}
+
+.is-invalid {
+  border: solid 2px #ff3f3f !important;
+}
+
+.invalid-feedback {
+  color: #ff3f3f;
 }
 
 /* Navbar */
