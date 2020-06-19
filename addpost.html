@@ -59,43 +59,32 @@
             <ul>
               <li><a  href="index.html">Accueil</a></li>
               <li><a  href="about.html">A propos</a></li>
-              <li><a class="text-lowercase current" href="register.html">inscription</a></li>
-              <li><a class="text-lowercase" href="login.html">connexion</a></li>
               <li><a class="text-lowercase" href="dashboard.html">dashboard</a></li>
+              <li><a class="text-lowercase" href="login.html">profil</a></li>
+              <li><a class="text-lowercase" href="register.html">déconnexion</a></li>
             </ul>
         </div>
       </nav>
 
-     <section id="register" class="py-2">
-       <div class="container">
-         <form action="" id="register-form">
-           <div class="alert alert-success">You're registered and can login</div>
-          <h3 class="mb-1">Inscrivez-vous</h3>
-           <div class="form-group">
-             <label for="name">Nom<sup>*</sup></label>
-             <input type="text" id="name" name="name">
-           </div>
-           <div class="form-group">
-             <label for="lastname">Prénom<sup>*</sup></label>
-             <input type="text" id="lastname" name="lastname">
-           </div>
-           <div class="form-group">
-             <label for="email">Email<sup>*</sup></label>
-             <input type="email" name="email" id="email">
-           </div>
-           <div class="form-group">
-            <label for="password">Mot de passe<sup>*</sup></label>
-            <input type="password" name="password" id="password">
-           </div>
-           <div class="form-group">
-             <label for="confirm-pasword">Confirmer mot de passe<sup>*</sup></label>
-             <input type="password" name="confirm-password" id="confirm-password">
-           </div>
-
-           <input type="submit" value="S'inscrire" name="submit" class="btn btn-primary">
-         </form>
-       </div>
-     </section>
+      <section id="addpost">
+        <div class="container py-2">
+          <h1 class="py-2">Fill in the blank to add a post</h1>
+          <form action="" id="addpost-form">
+            <div class="form-group">
+              <input type="text" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <textarea name="editor1" id="" cols="80" rows="10" placeholder="article message"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="file" name="img_article" id="">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Publish">
+            </div>
+          </form>
+        </div>
+      </section>
 
 
       <!-- #Footer -->
@@ -132,5 +121,10 @@
           </div>
         </div>
       </footer>
+      <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script>
+          CKEDITOR.replace( 'editor1' );
+      </script>
   </body>
+
   </html>
