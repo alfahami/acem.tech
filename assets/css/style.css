@@ -1037,19 +1037,32 @@ textarea::placeholder {
 }
 
 /* Dashboard */
-.container .article-container {
+#dashboard .container .article-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.5rem;
 }
 
-#dashboard .container .article-container > :nth-child(odd) {
+#dashboard .container .article-container .articles > * {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column: 1 / span 2;
   grid-gap: 0.75rem;
   align-items: center;
 }
+
+@media(max-width: 500px){
+  #dashboard .container .article-container .articles > *,
+  #dashboard .container .article-container,
+  #dashboard .article-container .articles img {
+    display: block;
+  }
+  #dashboard .article-container .articles img {
+    margin-bottom: 0.875rem;
+  }
+}
+
+
 
 /* Addpost */
 #addpost-form {
