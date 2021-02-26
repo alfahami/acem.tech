@@ -1,4 +1,4 @@
-# ACEM FES NEWS official website
+# ACEM NEWS official website
 
 Design & Code of the front-end of acemfes news website\
 [Live Demo](https://alfahami.github.io/news-acemfes/) | Design: Photoshop | Coding: HTML/CSS 
