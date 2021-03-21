@@ -29,6 +29,20 @@ class Post
         }
     }
 
+    public function updatePost($data){
+        $this->db->query("UPDATE posts SET title = :title, body = :body WHERE id = :id");
+
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':body', $data['body']);
+        $this->db->bind(':id', $data['id']);
+
+        if($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getPostsByUser($user_id)
     {
         $this->db->query("SELECT p.*, u.id as userID, u.firstname as fname, u.lastname as lname

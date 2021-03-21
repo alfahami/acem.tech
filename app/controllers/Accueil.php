@@ -3,6 +3,7 @@ class Accueil extends Controller {
 
     public function index() {
         $accueilModel = $this->model('Accueils');
+        //$userModel = $this->model('Utilisateur');
         $posts = $accueilModel->getPosts();
 
         $data = [

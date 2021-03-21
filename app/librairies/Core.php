@@ -7,6 +7,10 @@
 class Core {
     private $currentController = 'Accueil';
     private $currentMethod = 'index';
+    /**
+     * @var string[]
+     */
+    private $params;
 
     public function __construct() {
         $url = $this->getUrl();
@@ -27,12 +31,12 @@ class Core {
 
         // Get params
         $this->params = $url ? array_values($url) : [];
+        
         if (!empty($this->params)) {
-
-            // Call a callback function, running the metho in controller with params
             call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
         } else {
-            call_user_func_array([$this->currentController, $this->currentMethod], ['']);
+            $this->params = [""];
+            call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
         }
     }
 

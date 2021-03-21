@@ -153,18 +153,9 @@ class Utilisateurs extends Controller {
         $_SESSION['user_email']  = $user->email;
         $_SESSION['user_fname']  = $user->firstname;
         $_SESSION['user_lname']  = $user->lastname;
-        $_SESSION['joined_at']   = $user->created_at;
-        $_SESSION['bio']         = $user->bio;
+        $_SESSION['user_joined_at']   = $user->created_at;
+        $_SESSION['user_bio']         = $user->bio;
         redirect('posts/index');
-    }
-
-    public function editerBio($id, $bio){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-            if($_SESSION['user_id'] == $id) {
-                $bio = trim($_POST['bio']);
-            }
-        }
     }
 
     public function modifier($id){
@@ -176,12 +167,29 @@ class Utilisateurs extends Controller {
         }
     }
 
+    public function supprimerCompte($id) {
+        if(isLoggedIn()) {
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->modelUtilisateur->deleteUserById($id)){
+                    flash('user_del_success', 'Votre compte a bien été supprimer!');
+                    redirect('utilisateurs/inscription');
+                    session_cache_expire(1);
+
+                }
+                else {
+                    die('Une erreur est survenue. Merci de ressayer plus tard');
+                }
+            }
+        }
+    }
+
     public function deconnexion(){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
         unset($_SESSION['user_fname']);
         unset($_SESSION['user_lname']);
-        unset($_SESSION['joined_at']);
+        unset($_SESSION['user_bio']);
+        unset($_SESSION['user_joined_at']);
         session_destroy();
         redirect('utilisateurs/connexion');
     }

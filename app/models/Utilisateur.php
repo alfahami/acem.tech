@@ -59,7 +59,7 @@
             }
         }
 
-        public function delete($id) {
+        public function deleteUserById($id) {
             $this->db->query('DELETE FROM users WHERE id = :id');
             $this->db->bind(':id', $id);
 
@@ -70,10 +70,13 @@
             }
         }
 
-        public function editBio($id, $bio){
-            $this->db->query('UPDATE users SET bio = :bio WHERE id = :id');
-            $this->db->bind(':bio', $bio);
-            $this->db->bind(':id', $id);
+        public function editerBio($data){
+            $this->db->query('UPDATE users SET firstname = :fname, lastname = :lname, bio = :bio WHERE id = :id');
+
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':bio', $data['bio']);
+            $this->db->bind(':id', $data['id']);
 
             if($this->db->execute()) {
                 return true;
@@ -82,8 +85,5 @@
             }
         }
 
-        public function modifier($id){
-
-        }
     }
 

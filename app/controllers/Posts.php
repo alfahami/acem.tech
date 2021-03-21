@@ -21,23 +21,33 @@ class Posts extends Controller
 //        ];
         if(isLoggedIn()){
             $data = $this->postsByUser();
-            $this->view('posts/index', $data);
+            $user = $this->userModel->getUserById($_SESSION['user_id']);
+            if(!empty($data)) {
+                $data = [
+                    'posts' => $data,
+                    'user' => $user
+                ];
+
+                // send array of posts by user to view
+                $this->view('posts/index', $data);
+            } else {
+                // User doesn't have post yet
+                flash('no_post_error', 'Vous n\'avez aucune article! Publiez-en une.', 'alert alert-danger');
+                $data = [
+                    'posts' => '',
+                    'user' => $user
+                ];
+                $this->view('posts/index', $data);
+            }
         } else {
-            $this->view('pages/index');
+           redirect('pages/index');
         }
     }
 
     public function postsByUser(){
         $data = array();
         $data = $this->postModel->getPostsByUser($_SESSION['user_id']);
-        if(!empty($data)) {
-            // send array of posts by user to view
-            $this->view('posts/index', $data);
-        } else {
-            // User doesn't have post yet
-            flash('no_post_error', 'Vous n\'avez aucune article! Publiez-en une.', 'alert alert-danger');
-            $this->view('posts/index');
-        }
+        return $data;
     }
 
     /**
@@ -161,6 +171,60 @@ class Posts extends Controller
         }
     }
 
+    public function editer($id){
+        if(isLoggedIn()) {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $data = [
+                    'id' => $id,
+                    'title' => trim($_POST['title']),
+                    'body' => trim($_POST['body']),
+                    'title_error' => '',
+                    'body_error' => ''
+                ];
+
+                if (empty($data['title'])) {
+                    $data['title_error'] = 'Saisissez une titre';
+                }
+
+                if (empty($data['body'])) {
+                    $data['body_error'] = 'Remplir le contenu de l\'article';
+                }
+
+                // Make sure no errors left
+                if (empty($data['title_error']) && empty($data['body_error'])) {
+                    if ($this->postModel->updatePost($data)) {
+                        flash('post_update_success', 'Votre poste a été mis à jour');
+                        redirect('posts/dashboard');
+                    } else {
+                        die('Une erreur est survenue! Merci de ressayer');
+                    }
+                } // Displaying errors
+                else {
+                    $this->view('posts/editer', $data);
+                }
+            } else {
+                // Get the existing post
+                $post = $this->postModel->getPostById($id);
+
+                if ($post->user_id != $_SESSION['user_id']) {
+                    redirect('posts');
+                }
+
+                $data = [
+                    'id' => $id,
+                    'post' => $post,
+                    'body_error' => '',
+                    'title_error' => ''
+                ];
+                $this->view('posts/editer', $data);
+            }
+        } else {
+            redirect('pages/index');
+        }
+    }
+
     public function article($id){
 
         $post = $this->postModel->getPostById($id);
@@ -173,16 +237,63 @@ class Posts extends Controller
         $this->view('posts/article', $data);
     }
 
-    public function supprimer($id){
+    public function editerBio($id){
+        if(isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = [
+                    'id' => $id,
+                    'fname' => trim($_POST['fname']),
+                    'lname' => trim($_POST['lname']),
+                    'bio' => trim($_POST['bio']),
+                    'fname_err' => '',
+                    'lname_err' => '',
+                    'bio_err' => ''
+                ];
+                if (empty($data['fname'])) {
+                    $data['posts'] = $this->postsByUser();
+                    $data['fname_err'] = 'Champ obligatoire';
+                }
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if (empty($data['fname'])) {
+                    $data['posts'] = $this->postsByUser();
+                    $data['lname_err'] = 'Champ obligatoire';
+                }
+
+                if (empty($data['bio'])) {
+                    $data['posts'] = $this->postsByUser();
+                    $data['bio_err'] = 'Champ obligatoire';
+                }
+                if (empty($data['fname_err']) && empty($data['lname_err']) && empty($data['bio_err'])) {
+                    if ($this->userModel->editerBio($data)) {
+                        flash('bio_success', 'Votre bio a été mis à jour');
+                        redirect('posts/index');
+                    } else {
+                        die('Une erreur est survenue. Merci de ressayer');
+                    }
+                } else {
+                    $this->view('posts/editerBio', $data);
+                }
+            } else {
+                $data['posts'] = $this->postsByUser();
+                $data['user'] = $this->userModel->getUserById($id);
+                $this->view('posts/editerBio', $data);
+            }
+        } else {
+            redirect('pages/index');
+        }
+    }
+
+    public function supprimer($id)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $post = $this->postModel->getPostById($id);
 
-            if($post->user_id != $_SESSION['user_id']) {
+            if ($post->user_id != $_SESSION['user_id']) {
                 redirect('posts/index');
             }
 
-            if($this->postModel->deletePost($id)) {
+            if ($this->postModel->deletePost($id)) {
                 flash('delete_success', 'Votre article a été supprimer');
                 redirect('posts/index');
             } else {
@@ -190,9 +301,8 @@ class Posts extends Controller
                 redirect('posts/index');
             }
         } else {
-            echo 'WTF';
+            redirect('pages/accueil');
         }
-
     }
 
 }

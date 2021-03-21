@@ -6,7 +6,9 @@
         <div class=" article-container py-1">
             <?php
                 flash('no_post_error');
+                flash('post_update_success');
                 flash('delete_success');
+                flash('bio_success');
                 flash('delete_error');
             ?>
 
@@ -20,7 +22,7 @@
             <div class="articles">
                 <?php flash('post_success'); ?>
 
-                <?php foreach($data as $post) : ?>
+                <?php  if(!empty($data['posts'])) { foreach($data['posts'] as $post) : ?>
 
                 <article class="card bg-light">
                     <img src="<?php echo URLROOT; ?>/public/images/default.png
@@ -33,14 +35,15 @@
                         </p>
 <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis incidunt ipsum minima nam nobis praesentium veritatis.</p>-->
                             <small class="left-text"><?php formatDateMin($post->published_at); ?></small>
-                            <button class="btn-default"><a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $post->id;?>"></a>Editer</button>
+
+                        <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $post->id; ?>" class="btn-sm">Editer</a>
                         <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $post->id; ?>">
-                        <input type="submit" class="btn-default text-red" value="Supprimer" title="Suppression irreversible">
+                        <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
                         </form>
                     </div>
                 </article>
 
-                <?php endforeach; ?>
+                <?php endforeach; } ?>
 
         </div>
 
@@ -48,23 +51,22 @@
                 <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
                 <div class="clearfix"></div>
 
-                    <div class="l-heading right-text"> <?php echo $_SESSION['user_fname']; ?>  <?php echo $_SESSION['user_lname']; ?>
+                    <div class="l-heading right-text"> <?php echo $data['user']->firstname; ?>  <?php echo $data['user']->lastname; ?>
             </div>
 
-                <small><div class="right-text">Membre depuis <?php formatDate($_SESSION['joined_at']); ?></div></small>
+                <small><div class="right-text">Membre depuis <?php formatDate($_SESSION['user_joined_at']); ?></div></small>
             <div class="clearfix"></div>
             <p>
             <small><div class="pt-2 right-text">Introduction</div></small>
                     <div class="bio">
-                        <p><?php echo $_SESSION['bio']; ?></p>
+                        <p><?php echo $data['user']->bio; ?></p>
                     </div>
 
-                    <form method="post" action="<?php echo URLROOT; ?>/posts/supprimercompte" class="left-text">
-                        <input class="btn-default mt-1 align-right text-red" type="submit" value="Supprimer votre compte">
+                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/supprimerCompte/<?php echo $data['user']->id; ?>" class="left-text">
+                        <a href="<?php echo URLROOT; ?>/posts/editerBio/<?php echo $_SESSION['user_id']; ?>" clas="btn-sm">Modifier</a>
+                        <input class="btn-default mt-1 text-red" type="submit" value="Supprimer votre compte" title="Suprression définitive, vos articles seront perdus pour toujours">
                     </form>
-                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/modifier/<?php echo $_SESSION['user_id']; ?>" class="left-text">
-                        <input class="btn-default mt-1 align-right mx-1" type="submit" value="Modifier">
-                    </form>
+
                     <div class="clearfix"></div>
                 </p>
 

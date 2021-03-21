@@ -82,6 +82,10 @@ ul {
   list-style-type: none;
 }
 
+textarea {
+  resize: none;
+}
+
 /* Utility Classes */
 .container {
   max-width: 1100px;
@@ -196,7 +200,12 @@ ul {
   padding: 0.1rem 0.275rem;
   cursor: pointer;
   font-size: 0.875rem;
+}
 
+.btn-sm {
+  cursor: pointer;
+  padding: 0.1rem 0.275rem;
+  font-size: 0.70rem;
 }
 
 .btn-primary {
@@ -232,10 +241,6 @@ ul {
 .btn-block {
   display: block;
   margin: 0.7rem 0;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
 }
 
 .form-group label,
@@ -361,9 +366,11 @@ ul {
 
 .invalid-feedback {
   color: #ff3f3f;
+  display: inline-block;
 }
 
 .inline { display: inline; }
+.inline-block { display: inline-block; }
 
 .clearfix {
   clear: both;
@@ -913,7 +920,7 @@ textarea::placeholder {
 /* About Page*/
 
 #about .page-container .about.card h1 {
-  letter-spacing: -10;
+  letter-spacing: -1px;
   font-size: 1.2rem;
 }
 
@@ -1094,7 +1101,7 @@ textarea::placeholder {
 #login-form input[type='email'],
 #login-form input[type='password'] {
   font-family: 'Exo', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #444;
 }
 
@@ -1169,6 +1176,22 @@ textarea::placeholder {
   width: 100px;
 }
 
+/* Edit Post Form */
+#editpost-form,
+#editpost-form input,
+#editpost-form textarea {
+  width: 100%;
+}
+
+#editpost-form .form-group textarea {
+  height: 500px;
+}
+
+#editpost-form .form-group input[type='submit']{
+  float: right;
+  width: auto;
+  margin-left: 0.875rem;
+}
 /* Footer */
 #main-footer {
   background: #333;

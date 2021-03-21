@@ -31,7 +31,7 @@
           </div>
         </div>
       </footer>
-        <?php if($view == 'posts/ajouterarticle') : ?>
+        <?php if($view == 'posts/ajouterarticle' || $view == 'posts/editer') : ?>
       <script src="<?php echo URLROOT; ?>/public/js/ckeditor/ckeditor.js"></script>
       <script>
           CKEDITOR.replace( 'editor1' );

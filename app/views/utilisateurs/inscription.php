@@ -2,6 +2,7 @@
      <section id="register" class="py-2">
        <div class="container">
          <form action="<?php echo URLROOT; ?>/utilisateurs/inscription" method="POST" id="register-form">
+             <?php flash('user_del_success'); ?>
           <h3 class="mb-1">Inscrivez-vous</h3>
            <div class="form-group">
              <label for="name">Nom<sup>*</sup></label>
@@ -33,7 +34,7 @@
                  <textarea name="bio" id="bio" class="<?php echo (!empty($data['bio_err'])) ? 'is-invalid' : ''; ?>" rows="5" ></textarea> <br>
                  <span class="invalid-feedback"><?php echo $data['bio_err']; ?></span>
              </div>
-           <input type="submit" value="S'inscrire" class="btn btn-primary">
+           <input type="submit" value="Inscrivez-vous" class="btn btn-primary">
          </form>
        </div>
      </section>
