@@ -5,7 +5,7 @@
     <div class="container">
         <div class="page-container">
             <article class="card bg-light">
-                <img src="<?php echo URLROOT; ?>/public/images/default.png" alt="">
+                <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
                 <h1 class="l-heading"><?php echo $data['post']->title; ?></h1>
                 <div class="meta">
                     <small>

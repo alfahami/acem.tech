@@ -24,8 +24,7 @@
                 <?php foreach($data['posts'] as $post) : ?>
 
                     <article class="card bg-light">
-                        <img src="<?php echo URLROOT; ?>/public/images/default.png
-" alt="">
+                        <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
                         <div>
                             <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
                             <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->id; ?>"><?php echo $post->title; ?></a></h3>
@@ -68,7 +67,7 @@
 
                     <small><span class="invalid-feedback"><?php if(!empty($data['bio_err'])) echo $data['bio_err']; ?></span></small>
                     <textarea class="bio" name="bio" id="bio" cols="40" rows="10">
-                       <?php echo $_SESSION['user_bio']; ?>
+                       <?php echo $data['user']->bio; ?>
                     </textarea>
 
                     <a href="<?php echo URLROOT; ?>/posts/index">Annuler</a>

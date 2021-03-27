@@ -288,6 +288,7 @@ class Posts extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $post = $this->postModel->getPostById($id);
+            $filename = SITE_ROOT . DIRECTORY_SEPARATOR . "storage/posts" . DIRECTORY_SEPARATOR . $post->img_name;
 
             if ($post->user_id != $_SESSION['user_id']) {
                 redirect('posts/index');
@@ -295,7 +296,12 @@ class Posts extends Controller
 
             if ($this->postModel->deletePost($id)) {
                 flash('delete_success', 'Votre article a été supprimer');
-                redirect('posts/index');
+                if(unlink($filename)) {
+                    redirect('posts/index');
+                } else {
+                    die('Error while deleteing your picture! Try again!');
+                }
+
             } else {
                 flash('delete_error', 'Une erreur est survenue, merci de ressayer plus tard.', 'alert alert-danger');
                 redirect('posts/index');

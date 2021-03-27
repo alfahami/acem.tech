@@ -150,6 +150,21 @@ textarea {
   padding: 0.5rem 0.7rem;
 }
 
+.card-bkgd-image,
+.bkgd-cover-image {
+  display: block;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 250px
+}
+
+.bkgd-cover-image {
+  height: 450px
+}
+
 .page-container {
   display: grid;
   grid-template-columns: 5fr 2fr;
