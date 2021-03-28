@@ -19,20 +19,27 @@
         <h2>DERNIERES PUBLICATIONS</h2>
         <div class="article-container py-1">
             <div class="articles">
-                <?php foreach($data['posts'] as $post) : ?>
+                <?php if (!empty($data)) {
+                    foreach($data['posts'] as $post) : ?>
 
-                    <article class="card bg-light">
-                        <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
-                         <div>
-                            <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
-                            <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->id; ?>"><?php echo $post->title; ?></a></h3>
-                            <p class="mb-1">
-                                <?php echo word_count($post->body); ?>
-                            </p>
-                        </div>
-                    </article>
+                        <article class="card bg-light">
+                            <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
+                             <div>
+                                <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
+                                <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->id; ?>"><?php echo $post->title; ?></a></h3>
+                                <p class="mb-2">
+                                    <?php $str = strip_tags($post->body);
+                                    echo word_count($str);
+                                    ?>
+                                </p>
+                                 <small>By <strong><?php echo $data['user']->firstname .' '. $data['user']->lastname; ?></small></strong>
 
-                <?php endforeach; ?>
+                            </div>
+
+                        </article>
+
+                    <?php endforeach;
+                } ?>
 
             </div>
 

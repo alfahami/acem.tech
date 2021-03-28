@@ -3,12 +3,15 @@ class Accueil extends Controller {
 
     public function index() {
         $accueilModel = $this->model('Accueils');
-        //$userModel = $this->model('Utilisateur');
+        $userMoedl = $this->model('Utilisateur');
+
+        $user = $userMoedl->getUserById($_SESSION['user_id']);
         $posts = $accueilModel->getPosts();
 
         $data = [
             'current_home' => 'current',
-            'posts' => $posts
+            'posts' => $posts,
+            'user' => $user
         ];
 
         $this->view('pages/index', $data);

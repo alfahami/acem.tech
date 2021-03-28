@@ -57,6 +57,9 @@ class Posts extends Controller
     public function ajouterarticle(){
         if(isLoggedIn()){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // input should be submitted with html tags
+                $content = $_POST['editor1'];
+
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $filename = $_FILES['img_article']['name'];
 
@@ -64,7 +67,7 @@ class Posts extends Controller
                     'user_id'       =>'',
                     'title'         => trim($_POST['title']),
                     'category'      => trim($_POST['categories']),
-                    'body'          => $_POST['editor1'],
+                    'body'          => $content,
                     'filename'      => $filename,
                     'title_err'     => '',
                     'category_err'  => '',
@@ -175,11 +178,14 @@ class Posts extends Controller
         if(isLoggedIn()) {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                // input shouldn't be sanitized
+                $content = $_POST['body'];
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $data = [
                     'id' => $id,
                     'title' => trim($_POST['title']),
-                    'body' => trim($_POST['body']),
+                    'body' => $content,
                     'title_error' => '',
                     'body_error' => ''
                 ];

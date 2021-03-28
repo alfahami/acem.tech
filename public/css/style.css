@@ -314,6 +314,10 @@ textarea {
   margin-bottom: 0.875rem;
 }
 
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
 .mt-1 {margin-top: 0.875rem; }
 
 .bg-dark {
