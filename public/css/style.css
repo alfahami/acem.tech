@@ -391,6 +391,10 @@ textarea {
   clear: both;
 }
 
+.img-scale {
+  transform: scale(0.9, 0.9);
+}
+
 /* Navbar */
 #main-navbar {
   background: #fff;
@@ -1005,8 +1009,9 @@ textarea::placeholder {
 }
 
 #article .page-container .writer img {
-  width: 150px;
-  height: 150px;
+  background-color: #fff;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   float: left;
   margin-right: 0.5rem;
@@ -1166,8 +1171,6 @@ textarea::placeholder {
   float: right;
 }
 
-
-
 /* Addpost */
 #addpost-form {
   width: 70%;
@@ -1206,6 +1209,13 @@ textarea::placeholder {
   float: right;
   width: auto;
   margin-left: 0.875rem;
+}
+
+/* Editer Bio Form*/
+#form-editerBio input[type="file"] {
+  margin-top: 2px;
+  float: right;
+  direction: rtl;
 }
 /* Footer */
 #main-footer {

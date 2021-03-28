@@ -135,7 +135,7 @@ class Posts extends Controller
                                         $this->view('posts/addpost', $data);
                                     }
                                 } else {
-                                    flash('upload_error', 'Erro while uploading, please try again');
+                                    flash('upload_error', 'Error while uploading, please try again');
                                     $this->view('posts/ajouterarticle', $data);
                                 }
                             }
@@ -240,15 +240,26 @@ class Posts extends Controller
     public function editerBio($id){
         if(isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $input_name = 'profile_image';
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $filename = $_FILES[$input_name]['name'];
+
                 $data = [
                     'id' => $id,
+                    'filename' => $filename,
                     'fname' => trim($_POST['fname']),
                     'lname' => trim($_POST['lname']),
                     'bio' => trim($_POST['bio']),
+                    'filename_error' => '',
                     'fname_err' => '',
                     'lname_err' => '',
                     'bio_err' => ''
                 ];
+                if(empty($filename)){
+                    $data['posts'] = $this->postsByUser();
+                    $data['filename_error'] = 'Champ obligatore';
+                }
+
                 if (empty($data['fname'])) {
                     $data['posts'] = $this->postsByUser();
                     $data['fname_err'] = 'Champ obligatoire';
@@ -263,12 +274,20 @@ class Posts extends Controller
                     $data['posts'] = $this->postsByUser();
                     $data['bio_err'] = 'Champ obligatoire';
                 }
-                if (empty($data['fname_err']) && empty($data['lname_err']) && empty($data['bio_err'])) {
-                    if ($this->userModel->editerBio($data)) {
-                        flash('bio_success', 'Votre bio a été mis à jour');
-                        redirect('posts/index');
-                    } else {
-                        die('Une erreur est survenue. Merci de ressayer');
+                if (empty($data['fname_err']) && empty($data['lname_err']) && empty($data['bio_err']) && empty($data['filename_error'])) {
+
+                    $input_name = 'profile_image';
+                    $view = 'posts/editerBio';
+                    $dest_path = 'storage/profiles';
+
+                    if(upload_image($input_name, $data, $view, $dest_path)) {
+                        $data['filename'] = FILENAME;
+                        if ($this->userModel->editerBio($data)) {
+                            flash('bio_success', 'Votre bio a été mis à jour');
+                            redirect('posts/index');
+                        } else {
+                            die('Une erreur est survenue. Merci de ressayer');
+                        }
                     }
                 } else {
                     $this->view('posts/editerBio', $data);

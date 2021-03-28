@@ -47,10 +47,21 @@
             </div>
 
             <div class="sidebar mb-1">
-                <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
+                <form action="<?php echo URLROOT; ?>/posts/editerBio/<?php echo $_SESSION['user_id']; ?>" method="post" enctype="multipart/form-data" id="form-editerBio">
+                <?php if(!empty($data['user']->picture_name)) { ?>
+                    <img id="profile-pic" src="<?php echo URLROOT; ?>/storage/profiles/<?php echo $data['user']->picture_name; ?>" alt="">
+                <?php } else { ?>
+                    <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
+                 <?php } ?>
+
+                <div class="align-right">
+                    <small><span class="invalid-feedback"><?php if(!empty($data['filename_error'])) echo $data['filename_error']; ?></span></small>
+                    <input type="file" name="profile_image" id="" class="align-right">
+                </div>
+
                 <div class="clearfix"></div>
 
-                <form action="<?php echo URLROOT; ?>/posts/editerBio/<?php echo $_SESSION['user_id']; ?>" method="post">
+
                 <div class="py-1 form-group right-text">
 
                     <small><span class="invalid-feedback"><?php if(!empty($data['fname_err'])) echo $data['fname_err']; ?></span></small>

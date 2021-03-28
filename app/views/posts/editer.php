@@ -6,7 +6,7 @@
     <div class="container">
         <div class="page-container">
             <article class="card bg-light">
-                <img src="<?php echo URLROOT; ?>/public/images/default.png" alt="">
+                <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
                 <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form">
                     <span class="invalid-feedback"><?php echo $data['title_error'] ? $data['title_error'] : ''; ?></span>
                     <div class="form-group">

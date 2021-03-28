@@ -71,11 +71,12 @@
         }
 
         public function editerBio($data){
-            $this->db->query('UPDATE users SET firstname = :fname, lastname = :lname, bio = :bio WHERE id = :id');
+            $this->db->query('UPDATE users SET firstname = :fname, lastname = :lname, bio = :bio, picture_name = :picture_name WHERE id = :id');
 
             $this->db->bind(':fname', $data['fname']);
             $this->db->bind(':lname', $data['lname']);
             $this->db->bind(':bio', $data['bio']);
+            $this->db->bind(':picture_name', $data['filename']);
             $this->db->bind(':id', $data['id']);
 
             if($this->db->execute()) {

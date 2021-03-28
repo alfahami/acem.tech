@@ -47,7 +47,11 @@
         </div>
 
         <div class="sidebar mb-1">
+            <?php if(!empty($data['user']->picture_name)) { ?>
+                <img id="profile-pic" src="<?php echo URLROOT; ?>/storage/profiles/<?php echo $data['user']->picture_name; ?>" alt="">
+            <?php } else { ?>
                 <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
+            <?php } ?>
                 <div class="clearfix"></div>
 
                     <div class="l-heading right-text"> <?php echo $data['user']->firstname; ?>  <?php echo $data['user']->lastname; ?>

@@ -19,7 +19,11 @@
 
 
                 <div class="writer">
-                    <img src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
+                    <?php if(!empty($data['user']->picture_name)) { ?>
+                        <img class="img-scale" src="<?php echo URLROOT; ?>/storage/profiles/<?php echo $data['user']->picture_name; ?>" alt="">
+                    <?php } else { ?>
+                        <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
+                    <?php } ?>
                     <h3><?php echo $data['user']->firstname . ' ' . $data['user']->lastname; ?></h3>
                     <p><?php echo $data['user']->bio; ?></p>
                 </div>
