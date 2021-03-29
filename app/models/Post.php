@@ -14,7 +14,7 @@ class Post
     }
 
     public function addPost($data){
-        $this->db->query('INSERT INTO posts(user_id, title, body, category, img_name) VALUES(:user_id, :title, :body, :category, :img_name)');
+        $this->db->query('INSERT INTO posts(post_id, user_id, title, body, category, img_name) VALUES(NULL,:user_id, :title, :body, :category, :img_name)');
 
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':title', $data['title']);
@@ -30,7 +30,7 @@ class Post
     }
 
     public function updatePost($data){
-        $this->db->query("UPDATE posts SET title = :title, body = :body WHERE id = :id");
+        $this->db->query("UPDATE posts SET title = :title, body = :body WHERE post_id = :id");
 
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':body', $data['body']);
@@ -54,14 +54,14 @@ class Post
     }
 
     public function getPostById($post_id){
-        $this->db->query("SELECT * FROM posts WHERE id = :post_id");
+        $this->db->query("SELECT * FROM posts WHERE post_id = :post_id");
         $this->db->bind('post_id', $post_id);
 
         return $this->db->single();
     }
 
     public function deletePost($post_id){
-        $this->db->query("DELETE FROM posts WHERE id = :post_id");
+        $this->db->query("DELETE FROM posts WHERE post_id = :post_id");
         $this->db->bind(':post_id', $post_id);
 
         if($this->db->execute()){

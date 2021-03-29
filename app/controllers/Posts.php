@@ -135,7 +135,7 @@ class Posts extends Controller
 //                                        $this->view('posts/index', $data);
                                     } else {
                                         flash('post_error', 'Error, please try again', 'alert alert-danger');
-                                        $this->view('posts/addpost', $data);
+                                        $this->view('posts/ajouterarticle', $data);
                                     }
                                 } else {
                                     flash('upload_error', 'Error while uploading, please try again');
@@ -179,7 +179,7 @@ class Posts extends Controller
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                // input shouldn't be sanitized
+                // ckeditor textarea shouldn't be sanitized
                 $content = $_POST['body'];
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $data = [

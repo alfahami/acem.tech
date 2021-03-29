@@ -5,13 +5,13 @@ class Accueil extends Controller {
         $accueilModel = $this->model('Accueils');
         $userMoedl = $this->model('Utilisateur');
 
-        $user = $userMoedl->getUserById($_SESSION['user_id']);
-        $posts = $accueilModel->getPosts();
+       // $user = $userMoedl->getUserById($_SESSION['user_id']);
+        $posts = $accueilModel->PostsByUsers();
 
         $data = [
             'current_home' => 'current',
             'posts' => $posts,
-            'user' => $user
+            //'user' => $user
         ];
 
         $this->view('pages/index', $data);
