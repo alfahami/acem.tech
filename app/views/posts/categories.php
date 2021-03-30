@@ -1,10 +1,11 @@
-<?php include APPROOT . '/views/inc/header.php';?>
+<?php require APPROOT . '/views/inc/header.php';?>
 
+<!-- #Article Page-->
 <section class="dashboard" id="categorie">
-    <div class="container py-2">
-        <div class="article-container py-1">
+    <div class="container">
+        <div class="page-container">
+
             <div class="articles">
-                <?php echo flash('no_category'); ?>
                 <?php if (!empty($data)) {
                     foreach($data as $post) : ?>
 
@@ -13,7 +14,7 @@
                             <div>
                                 <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
                                 <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
-                                <p class="mb-2">
+                                <p>
                                     <?php $str = strip_tags($post->body);
                                     echo word_count($str);
                                     ?>
@@ -25,13 +26,19 @@
                         </article>
 
                     <?php endforeach;
-                } ?>
+                } else { ?>
+                    <div class="error-category">
+                        <?php echo flash('no_category'); ?>
+                    </div>
+
+                 <?php } ?>
 
             </div>
 
+
             <div class="sidebar">
                 <article class="card bg-light">
-                    <h3 class="article-heading text-capitalize"><a href="article.html">Catégories</a></h3>
+                    <h3 class="article-heading text-capitalize"><a>Catégories</a></h3>
                     <ul class="list">
                         <li><a href="<?php echo URLROOT; ?>/posts/categorie/festivites"><i class="fa fa-chevron-right"></i> Festivités</a></li>
                         <li><a href="<?php echo URLROOT; ?>/posts/categorie/be"><i class="fa fa-chevron-right"></i> Bureau Exécutif</a></li>
@@ -60,7 +67,22 @@
                     </p>
                 </article>
             </div>
+        </div>
+    </div>
 </section>
-<div class="clearfix"></div>
 
-<?php include APPROOT . '/views/inc/footer.php';?>
+<?php require APPROOT . '/views/inc/footer.php';?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

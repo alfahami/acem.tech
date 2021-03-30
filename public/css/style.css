@@ -390,13 +390,10 @@ textarea {
 
 .inline { display: inline; }
 .inline-block { display: inline-block; }
+.block { display: block; }
 
 .clearfix {
   clear: both;
-}
-
-.img-scale {
-  transform: scale(0.9, 0.9);
 }
 
 /* Navbar */
@@ -1027,36 +1024,44 @@ textarea::placeholder {
   text-transform: uppercase;
 }
 
-#article .page-container .sidebar article {
+#article .page-container .sidebar article,
+#categorie .page-container .sidebar article {
   margin-bottom: 1rem;
 }
 
-#article .page-container .sidebar article h3.text-capitalize {
+#article .page-container .sidebar article h3.text-capitalize,
+#categorie .page-container .sidebar article h3.text-capitalize {
   font-size: 1.4rem;
   padding: 0.2rem;
 }
 
-#article .page-container .sidebar ul.list li {
+#article .page-container .sidebar ul.list li,
+#categorie .page-container .sidebar ul.list li{
   border-bottom: dotted 1px #333;
   width: 90%;
 }
 
-#article .page-container .sidebar ul.list li:first-child {
+#article .page-container .sidebar ul.list li:first-child,
+#categorie .page-container .sidebar ul.list li:first-child {
   margin-top: 0.5rem;
 }
 
-#article .page-container .sidebar ul.list li:last-child {
+#article .page-container .sidebar ul.list li:last-child,
+#categorie .page-container .sidebar ul.list li:last-child{
   border-bottom: none;
 }
 
-#article .page-container .sidebar ul.list li a {
+#article .page-container .sidebar ul.list li a,
+#categorie .page-container .sidebar ul.list li a {
   color: #000;
 }
 
-#article .page-container .sidebar ul.list li a:hover {
+#article .page-container .sidebar ul.list li a:hover,
+#categorie .page-container .sidebar ul.list li a:hover{
   color: #ff9900;
 }
 
+#article .page-container .sidebar ul.list li a i,
 #article .page-container .sidebar ul.list li a i {
   border-radius: 50%;
 }
@@ -1080,6 +1085,27 @@ textarea::placeholder {
   #article .page-container .meta {
     float: left;
     padding: 0.5rem;
+  }
+}
+
+/* Catégorie */
+#categorie .page-container .articles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.875rem;
+}
+#categorie .page-container .articles article {
+  max-height: 450px;
+}
+
+#categorie .articles .error-category {
+  grid-column: 1 / span 2;
+}
+
+@media(max-width: 500px){
+  #categorie .page-container .articles {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

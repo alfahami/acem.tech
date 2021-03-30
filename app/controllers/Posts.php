@@ -268,12 +268,12 @@ class Posts extends Controller
 
                 if (empty($data['fname'])) {
                     $data['posts'] = $this->postsByUser();
-                    $data['fname_err'] = 'Champ obligatoire';
+                    $data['fname_err'] = 'Ne doit pas être vide';
                 }
 
                 if (empty($data['fname'])) {
                     $data['posts'] = $this->postsByUser();
-                    $data['lname_err'] = 'Champ obligatoire';
+                    $data['lname_err'] = 'Ne dois pas être vide';
                 }
 
                 if (empty($data['bio'])) {
@@ -296,6 +296,8 @@ class Posts extends Controller
                         }
                     }
                 } else {
+                    $data['posts'] = $this->postsByUser();
+                    $data['user'] = $this->userModel->getUserById($id);
                     $this->view('posts/editerBio', $data);
                 }
             } else {
@@ -310,7 +312,6 @@ class Posts extends Controller
 
     public function supprimer($id)
     {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $post = $this->postModel->getPostById($id);
             $filename = SITE_ROOT . DIRECTORY_SEPARATOR . "storage/posts" . DIRECTORY_SEPARATOR . $post->img_name;
@@ -342,7 +343,7 @@ class Posts extends Controller
                 $data = $this->postModel->categorie($category);
                 $this->view('posts/categories', $data);
             } else {
-                flash('no_category', 'Acune publication de cette catégorie', 'alert alert-danger');
+                flash('no_category', 'Cette catégorie n\'a pas encore article', 'alert alert-danger');
                 $this->view('posts/categories');
             }
 

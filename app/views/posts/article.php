@@ -31,7 +31,7 @@
 
             <div class="sidebar">
                 <article class="card bg-light">
-                    <h3 class="article-heading text-capitalize"><a href="article.html">Catégories</a></h3>
+                    <h3 class="article-heading text-capitalize"><a>Catégories</a></h3>
                     <ul class="list">
                         <li><a href="<?php echo URLROOT; ?>/posts/categorie/festivites"><i class="fa fa-chevron-right"></i> Festivités</a></li>
                         <li><a href="<?php echo URLROOT; ?>/posts/categorie/be"><i class="fa fa-chevron-right"></i> Bureau Exécutif</a></li>

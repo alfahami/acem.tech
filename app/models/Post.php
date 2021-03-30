@@ -67,6 +67,13 @@ class Post
         return $this->db->resultSet();
     }
 
+    public function findByKeyword($keyword){
+        $this->db->query("SELECT * FROM posts WHERE body LIKE CONCAT('%', :keyword, '%')");
+        $this->db->bind(':keyword', $keyword);
+
+        return $this->db->resultSet();
+    }
+
     public function deletePost($post_id){
         $this->db->query("DELETE FROM posts WHERE post_id = :post_id");
         $this->db->bind(':post_id', $post_id);
