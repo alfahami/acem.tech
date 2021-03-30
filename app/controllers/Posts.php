@@ -336,6 +336,24 @@ class Posts extends Controller
         }
     }
 
+    public function categorie($category){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            if(!empty($this->postModel->categorie($category))) {
+                $data = $this->postModel->categorie($category);
+                $this->view('posts/categories', $data);
+            } else {
+                flash('no_category', 'Acune publication de cette catégorie', 'alert alert-danger');
+                $this->view('posts/categories');
+            }
+
+        }
+        else {
+
+            $this->view('posts/categories');
+        }
+
+    }
+
 }
 
 

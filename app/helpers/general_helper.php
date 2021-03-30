@@ -28,7 +28,7 @@ function word_count($string) {
             $words = $words . " " . $array_words[$i];
         }
     }
-    return $words . ".";
+    return $words . "...";
 }
 
 // Category color helper

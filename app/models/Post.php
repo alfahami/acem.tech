@@ -60,6 +60,13 @@ class Post
         return $this->db->single();
     }
 
+    public function categorie($category){
+        $this->db->query("SELECT * FROM posts WHERE category LIKE CONCAT('%', :category, '%') ");
+        $this->db->bind(':category', $category);
+
+        return $this->db->resultSet();
+    }
+
     public function deletePost($post_id){
         $this->db->query("DELETE FROM posts WHERE post_id = :post_id");
         $this->db->bind(':post_id', $post_id);

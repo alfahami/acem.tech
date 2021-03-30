@@ -24,6 +24,10 @@ function showTitle($view) {
         case ('posts/ajouterarticle'):
             return $title = 'Ajouter un article';
             break;
+        case ('posts/categorie'):
+            return $title = 'Categorie';
+            break;
+
         default:
             return $title = 'Article';
     }

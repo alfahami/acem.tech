@@ -19,9 +19,9 @@
                 <label for="category">Choisir une catégorie</label>
                 <select name="categories" id="category">
                     <option value="Festivites">Festivites</option>
-                    <option value="Projet">Projet</option>
-                    <option value="Nouveaute">Nouveaute</option>
-                    <option value="Communique">Communique</option>
+                    <option value="Projets">Projet</option>
+                    <option value="Nouveautes">Nouveaute</option>
+                    <option value="Communiques">Communique</option>
                     <option value="archives">Archives</option>
                 </select>
                 <span class="invalid-feedback"><?php echo $data['category_err']; ?></span>
