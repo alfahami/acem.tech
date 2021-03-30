@@ -38,7 +38,7 @@
                             <small class="left-text"><?php formatDateMin($post->published_at); ?></small>
 
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $post->post_id; ?>" class="btn-sm">Editer</a>
-                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $post->id; ?>">
+                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $post->post_id; ?>">
                         <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
                         </form>
                     </div>

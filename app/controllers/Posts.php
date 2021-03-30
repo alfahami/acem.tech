@@ -343,7 +343,7 @@ class Posts extends Controller
                 $data = $this->postModel->categorie($category);
                 $this->view('posts/categories', $data);
             } else {
-                flash('no_category', 'Cette catégorie n\'a pas encore article', 'alert alert-danger');
+                flash('no_category', 'Cette catégorie n\'a pas encore d\'article', 'alert alert-danger');
                 $this->view('posts/categories');
             }
 

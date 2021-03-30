@@ -4,7 +4,7 @@
         <div class="container">
           <div class="showcase-container">
             <div class="showcase-content">
-              <div class="category category-festivites">Festivite</div>
+              <div class="category category-festivites">Festivites</div>
               <h1>Journee Scientifique &amp; Culturelle</h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aperiam a sit ut dolore neque minima eius temporibus ullam! Impedit nobis rerum, recusandae tempora quaerat nemo reprehenderit soluta magnam excepturi</p>
               <div class="btn btn-primary"><a href="#"> En Savoir Plus</a></div>
@@ -20,27 +20,41 @@
         <div class="article-container py-1">
             <div class="articles">
                 <?php if (!empty($data)) {
-                    foreach($data['posts'] as $post) : ?>
+                    foreach($data['posts'] as $post) :
+                        if($post->counter %2 != 0)  { ?>
 
-                        <article class="card bg-light">
-                            <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
-                             <div>
-                                <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
-                                <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
-                                <p class="mb-2">
-                                    <?php $str = strip_tags($post->body);
-                                    echo word_count($str);
-                                    ?>
-                                </p>
-                                 <small>By <strong><?php echo $post->firstname .' '. $post->lastname; ?></small></strong>
+                            <article class="card bg-light">
+                                <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
+                                 <div>
+                                    <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
+                                    <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
+                                    <p class="mb-2">
+                                        <?php $str = strip_tags($post->body);
+                                        echo word_count($str);
+                                        ?>
+                                    </p>
+                                     <small>By <strong><?php echo $post->firstname .' '. $post->lastname; ?></small></strong>
+                                </div>
+                            </article>
+                        <?php } else { ?>
+                            <article class="card bg-light">
+                                <div>
+                                    <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
+                                    <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
+                                    <p class="mb-2">
+                                        <?php $str = strip_tags($post->body);
+                                        echo word_count($str);
+                                        ?>
+                                    </p>
+                                    <small>By <strong><?php echo $post->firstname .' '. $post->lastname; ?></small></strong>
+                                </div>
+                                <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
 
-                            </div>
+                            </article>
 
-                        </article>
 
-                    <?php endforeach;
+                    <?php } endforeach;
                 } ?>
-
             </div>
 
             <div class="sidebar">
@@ -50,8 +64,7 @@
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Consectetur ut fugiat officiis laborum architecto, labore natus
-                        eveniet eos ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet aspernatur consequatur dolore eaque, harum impedit incidunt inventore ipsum labore maiores natus necessitatibus neque nostrum nulla numquam optio reiciendis rem reprehenderit, saepe similique sit vel veritatis vero voluptatem? Nemo, quo?
-
+                        eveniet eos ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet aspernatur consequatur dolore eaque.
                     </p>
                 </article>
                 <article class="card bg-light">
