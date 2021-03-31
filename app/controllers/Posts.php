@@ -259,7 +259,6 @@ class Posts extends Controller
 
                 $data = [
                     'id' => $id,
-                    'old_img_name' => $_POST['old-img-name'],
                     'filename' => $filename,
                     'fname' => trim($_POST['fname']),
                     'lname' => trim($_POST['lname']),
@@ -331,9 +330,28 @@ class Posts extends Controller
         }
     }
 
+    public function categorie($category){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            if(!empty($this->postModel->categorie($category))) {
+                $data = $this->postModel->categorie($category);
+                $this->view('posts/categories', $data);
+            } else {
+                flash('no_category', 'Cette catégorie n\'a pas encore d\'article', 'alert alert-danger');
+                $this->view('posts/categories');
+            }
+
+        }
+        else {
+
+            $this->view('posts/categories');
+        }
+
+    }
+
     public function supprimer($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $post = $this->postModel->getPostById($id);
             $filename = SITE_ROOT . DIRECTORY_SEPARATOR . "storage/posts" . DIRECTORY_SEPARATOR . $post->img_name;
             if ($post->user_id != $_SESSION['user_id']) {
@@ -354,24 +372,6 @@ class Posts extends Controller
         } else {
             redirect('pages/accueil');
         }
-    }
-
-    public function categorie($category){
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
-            if(!empty($this->postModel->categorie($category))) {
-                $data = $this->postModel->categorie($category);
-                $this->view('posts/categories', $data);
-            } else {
-                flash('no_category', 'Cette catégorie n\'a pas encore d\'article', 'alert alert-danger');
-                $this->view('posts/categories');
-            }
-
-        }
-        else {
-
-            $this->view('posts/categories');
-        }
-
     }
 
 }

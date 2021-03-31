@@ -56,7 +56,6 @@
                  <?php } ?>
 
                 <div class="align-right">
-                    <input type="hidden" name="old-img-name" value="<?php echo $data['user']->picture_name; ?>">
                     <input type="file" name="profile_image" id="" class="align-right">
                 </div>
 

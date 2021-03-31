@@ -170,10 +170,20 @@ class Utilisateurs extends Controller {
     public function supprimerCompte($id) {
         if(isLoggedIn()) {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // SANITIZING INPUT
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                /*
+                    Getting the value of the profile image to delete
+                    VALUE FROM HIDDEN INPUT
+                */
+                $img_name = trim($_POST['img-name']);
+                $filename = SITE_ROOT . DIRECTORY_SEPARATOR . "storage/profiles" . DIRECTORY_SEPARATOR . $img_name;
                 if($this->modelUtilisateur->deleteUserById($id)){
+                    // Delete the profile image in the server
+                    unlink($filename);
                     flash('user_del_success', 'Votre compte a bien été supprimer!');
                     redirect('utilisateurs/inscription');
-                    session_cache_expire(1);
+                    session_destroy();
 
                 }
                 else {

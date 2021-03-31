@@ -34,7 +34,6 @@
                                   echo word_count($str);
                             ?>
                         </p>
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis incidunt ipsum minima nam nobis praesentium veritatis.</p>-->
                             <small class="left-text"><?php formatDateMin($post->published_at); ?></small>
 
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $post->post_id; ?>" class="btn-sm">Editer</a>
@@ -66,9 +65,10 @@
                     <div class="bio">
                         <p><?php echo $data['user']->bio; ?></p>
                     </div>
-
-                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/supprimerCompte/<?php echo $data['user']->id; ?>" class="left-text">
+                    <div class="clearfix"></div>
+                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/supprimerCompte/<?php echo $data['user']->id; ?>" class="right-text">
                         <a href="<?php echo URLROOT; ?>/posts/editerBio/<?php echo $_SESSION['user_id']; ?>" clas="btn-sm">Modifier</a>
+                        <input type="hidden" name="img-name" value="<?php echo $data['user']->picture_name; ?>">
                         <input class="btn-default mt-1 text-red" type="submit" value="Supprimer votre compte" title="Suprression définitive, vos articles seront perdus pour toujours">
                     </form>
 
