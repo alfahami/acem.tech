@@ -34,7 +34,7 @@
                     <?php } else { ?>
                         <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
                     <?php } ?>
-                    <h3><?php echo $data['user']->firstname . ' ' . $data['user']->lastname; ?></h3>
+                    <h3><a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $data['user']->id; ?>"><?php echo $data['user']->firstname . ' ' . $data['user']->lastname; ?></a></h3>
                     <p><?php echo $data['user']->bio; ?></p>
                 </div>
             </article>

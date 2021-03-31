@@ -8,6 +8,10 @@
             $this->db = new Database;
         }
 
+        public function index(){
+            echo 'This is index users';
+        }
+
         public function inscription($data){
             $this->db->query('INSERT INTO users(firstname, lastname, email, password, bio) VALUES(:firstname, :lastname, :email, :password, :bio)');
             $this->db->bind(':firstname', $data['firstname']);

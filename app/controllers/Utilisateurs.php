@@ -1,14 +1,16 @@
 <?php
 class Utilisateurs extends Controller {
     private $modelUtilisateur;
+    private $postModel;
 
     public function __construct(){
         $this->modelUtilisateur = $this->model('Utilisateur');
+        $this->postModel = $this->model('Post');
     }
 
     public function inscription(){
         /*
-         * Check submit, check inputs, validate inputs, check error
+         * Check submit, check inputs, validate inputs, check errors
          * if everything is clean call model register function
          * if registered print success message
          */
@@ -158,15 +160,17 @@ class Utilisateurs extends Controller {
         redirect('posts/index');
     }
 
-    public function modifier($id){
-        if($id == $_SESSION['user_id']) {
+    public function profile($user_id){
+        $user = $this->modelUtilisateur->getUserById($user_id);
+        $posts = $this->postModel->getPostsByUser($user_id);
 
-            $this->view('utilisateurs/modifier');
-        } else {
-            echo 'WTF';
-        }
+        $data = [
+            'posts' => $posts,
+            'user' => $user
+        ];
+
+        $this->view('utilisateurs/info', $data);
     }
-
     public function supprimerCompte($id) {
         if(isLoggedIn()) {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
