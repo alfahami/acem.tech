@@ -11,6 +11,16 @@
                     <small>
                         <i class="fas fa-user"></i>Ecrit par <span class="text-bold"><?php echo $data['user']->firstname . ' ' . $data['user']->lastname;?></span>, <span class="date"><?php formatDateMin($data['post']->published_at); ?></span>
                     </small>
+                    <!-- SHOW BUTTONS IF USER IS LOGGED IN -->
+                    <?php if(!empty($_SESSION['user_id'])) : ?>
+                    <div>
+                        <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['post']->post_id; ?>" class="btn-sm">Editer</a>
+                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $data['post']->post_id; ?>">
+                            <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
+                        </form>
+                    </div>
+                    <?php endif; ?>
+
                     <div class="category <?php colors_category($data['post']->category);?>"><?php echo $data['post']->category; ?></div>
                 </div>
                 <div class="p-news mb-1">

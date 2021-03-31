@@ -28,12 +28,12 @@
                                  <div>
                                     <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
                                     <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
-                                    <p class="mb-2">
+                                    <p>
                                         <?php $str = strip_tags($post->body);
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                     <small>By <strong><?php echo $post->firstname .' '. $post->lastname; ?></small></strong>
+                                     <small>By <strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong> on <?php echo $post->published_at; ?></small>
                                 </div>
                             </article>
                         <?php } else { ?>
@@ -41,12 +41,12 @@
                                 <div>
                                     <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
                                     <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
-                                    <p class="mb-2">
+                                    <p>
                                         <?php $str = strip_tags($post->body);
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                    <small>By <strong><?php echo $post->firstname .' '. $post->lastname; ?></small></strong>
+                                    <small>By <strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong> on <?php echo $post->published_at; ?></small>
                                 </div>
                                 <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
 
@@ -55,7 +55,12 @@
 
                     <?php } endforeach;
                 } ?>
+                <div id="pagination-button" class="text-center py-1">
+                    <a href="#" title="précédent"><i class="fas fa-arrow-circle-left "></i></a>
+                    <a href="#" title="suivant"><i class="fas fa-arrow-circle-right"></i></a>
+                </div>
             </div>
+
 
             <div class="sidebar">
                 <article class="card bg-dark">
@@ -103,11 +108,9 @@
                     </p>
                 </article>
             </div>
+
 </section>
-<div class="text-center py-1">
-    <a href="#" class="btn btn-primary"><i class="fas fa-arrow-circle-left "></i></a>
-    <a href="#" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></a>
-</div>
+
 <div class="clearfix"></div>
 
 <?php include APPROOT . '/views/inc/footer.php';?>

@@ -281,6 +281,7 @@ textarea {
 
 .form-group select {
   cursor: pointer;
+  margin-bottom: 0.2rem;
 }
 .form-group select option {
   font-family: inherit;
@@ -401,6 +402,7 @@ textarea {
 .clearfix {
   clear: both;
 }
+.italic {font-style: italic; }
 
 /* Navbar */
 #main-navbar {
@@ -780,6 +782,19 @@ textarea::placeholder {
   #showcase .showcase-container .showcase-content h1 {
     font-size: 1.5rem;
   }
+}
+
+#pagination-button {
+  display: block;
+}
+
+#pagination-button i {
+  font-size: 1.6rem;
+  margin: 0 2px;
+}
+
+#pagination-button i:hover {
+  transform: scale(1.5);
 }
 
 /* Profile */

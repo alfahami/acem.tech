@@ -12,8 +12,7 @@
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             if (!array_key_exists($extension, $allowed)) {
                 flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
-                $this->view($view, $data);
-
+                return false;
 //            die("Error: Please select a valid file format.");
             } // Verify file size - 5MB maximum
             else if ($filesize > $maxsize) {
@@ -44,7 +43,7 @@
                 }
             }
         } else {
-            return false;
+            return 'Error';
         }
     }
 

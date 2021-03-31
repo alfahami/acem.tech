@@ -20,6 +20,7 @@
         <div class="article-container py-1">
             <div class="articles">
                 <?php flash('post_success'); ?>
+                <?php flash('format_error'); ?>
 
                 <?php foreach($data['posts'] as $post) : ?>
 

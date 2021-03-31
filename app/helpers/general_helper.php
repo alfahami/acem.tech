@@ -5,15 +5,6 @@ function redirect($page) {
     header('location:' . URLROOT . '/' . $page);
 }
 
-// Helper for saving html source code in db with ckeditor
-function convertData($body_content) {
-    $body_content = trim($body_content);
-    $body_content = stripslashes($body_content);
-    $body_content = htmlspecialchars($body_content);
-
-    return $body_content;
-}
-
 //    Extracting 20, 21 words to print in index (2 sentences)
 function word_count($string) {
     $str_length = str_word_count($string, 0);
@@ -23,7 +14,6 @@ function word_count($string) {
     if($str_length < 20) {
         return $string;
     } else {
-
         for ($i = 0; $i <= 20; $i++) {
             $words = $words . " " . $array_words[$i];
         }

@@ -298,6 +298,12 @@ class Posts extends Controller
                         } else {
                             die('Une erreur est survenue. Merci de ressayer');
                         }
+                    } else if(upload_image($input_name, $data, $view, $dest_path) == false){
+                        flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
+                        $data['posts'] = $this->postsByUser();
+                        $data['user'] = $this->userModel->getUserById($id);
+                        $this->view($view, $data);
+
                     }
                 }
                 // If user don't want to change his profile picture
@@ -330,11 +336,9 @@ class Posts extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $post = $this->postModel->getPostById($id);
             $filename = SITE_ROOT . DIRECTORY_SEPARATOR . "storage/posts" . DIRECTORY_SEPARATOR . $post->img_name;
-
             if ($post->user_id != $_SESSION['user_id']) {
                 redirect('posts/index');
             }
-
             if ($this->postModel->deletePost($id)) {
                 flash('delete_success', 'Votre article a été supprimer');
                 if(unlink($filename)) {
