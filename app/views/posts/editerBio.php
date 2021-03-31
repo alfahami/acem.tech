@@ -27,7 +27,7 @@
                         <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
                         <div>
                             <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
-                            <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->id; ?>"><?php echo $post->title; ?></a></h3>
+                            <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
                             <p class="mb-1">
                                 <?php echo word_count($post->body); ?>
                             </p>
@@ -55,7 +55,7 @@
                  <?php } ?>
 
                 <div class="align-right">
-                    <small><span class="invalid-feedback"><?php if(!empty($data['filename_error'])) echo $data['filename_error']; ?></span></small>
+                    <input type="hidden" name="old-img-name" value="<?php echo $data['user']->picture_name; ?>">
                     <input type="file" name="profile_image" id="" class="align-right">
                 </div>
 

@@ -85,6 +85,24 @@
                 return false;
             }
         }
+        /*
+         *  There is no way to bind not null values
+         * We create this function to call when the user
+         * decided not to update his profile picture
+        */
+        public function  editerBioNoImage($data){
+            $this->db->query("UPDATE users SET firstname = :fname, lastname = :lname, bio = :bio 
+                                   WHERE id = :id");
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':bio', $data['bio']);
+            $this->db->bind(':id', $data['id']);
 
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
