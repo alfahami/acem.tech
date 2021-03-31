@@ -185,8 +185,10 @@ class Posts extends Controller
                 $data = [
                     'id' => $id,
                     'title' => trim($_POST['title']),
+                    'category'      => trim($_POST['categories']),
                     'body' => $content,
                     'title_error' => '',
+                    'category_error' => '',
                     'body_error' => ''
                 ];
 
@@ -197,9 +199,12 @@ class Posts extends Controller
                 if (empty($data['body'])) {
                     $data['body_error'] = 'Remplir le contenu de l\'article';
                 }
+                if(empty($data['category'])){
+                    $data['category_error'] = 'Champ obligatoire';
+                }
 
                 // Make sure no errors left
-                if (empty($data['title_error']) && empty($data['body_error'])) {
+                if (empty($data['title_error']) && empty($data['body_error']) && empty($data['category_error'])) {
                     if ($this->postModel->updatePost($data)) {
                         flash('post_update_success', 'Votre poste a été mis à jour');
                         redirect('posts/dashboard');
@@ -222,7 +227,8 @@ class Posts extends Controller
                     'id' => $id,
                     'post' => $post,
                     'body_error' => '',
-                    'title_error' => ''
+                    'title_error' => '',
+                    'category_error' => ''
                 ];
                 $this->view('posts/editer', $data);
             }
@@ -263,10 +269,6 @@ class Posts extends Controller
                     'lname_err' => '',
                     'bio_err' => ''
                 ];
-                if(empty($filename)){
-                    $data['filename'] == NULL;
-                }
-
                 if (empty($data['fname'])) {
                     $data['posts'] = $this->postsByUser();
                     $data['fname_err'] = 'Ne doit pas être vide';
@@ -299,7 +301,7 @@ class Posts extends Controller
                     }
                 }
                 // If user don't want to change his profile picture
-                else if(empty($data['filename'])) {
+                else if(empty($data['filename']) && empty($data['fname_err']) && empty($data['lname_err']) && empty($data['bio_err']) && empty($data['filename_error'])) {
                     if ($this->userModel->editerBioNoImage($data)) {
                         flash('bio_success', 'Votre bio a été mis à jour');
                         redirect('posts/index');

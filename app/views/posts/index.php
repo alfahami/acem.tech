@@ -56,13 +56,13 @@
             <?php } ?>
                 <div class="clearfix"></div>
 
-                    <div class="l-heading right-text"> <?php echo $data['user']->firstname; ?>  <?php echo $data['user']->lastname; ?>
+                    <div class="m-heading right-text"> <?php echo $data['user']->firstname; ?>  <?php echo $data['user']->lastname; ?>
             </div>
 
                 <small><div class="right-text">Membre depuis <?php formatDate($_SESSION['user_joined_at']); ?></div></small>
             <div class="clearfix"></div>
             <p>
-            <small><div class="pt-2 right-text">Introduction</div></small>
+            <small><div class="right-text">Introduction</div></small>
                     <div class="bio">
                         <p><?php echo $data['user']->bio; ?></p>
                     </div>

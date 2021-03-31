@@ -74,7 +74,7 @@
                 <small><div class="right-text">Membre depuis <?php formatDate($_SESSION['user_joined_at']); ?></div></small>
                 <div class="clearfix"></div>
                 <p>
-                    <small><div class="pt-2 left-text">Introduction</div></small>
+                    <small><div class="right-text">Introduction</div></small>
 
                     <small><span class="invalid-feedback"><?php if(!empty($data['bio_err'])) echo $data['bio_err']; ?></span></small>
                     <textarea class="bio" name="bio" id="bio" cols="40" rows="10">

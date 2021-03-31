@@ -30,10 +30,11 @@ class Post
     }
 
     public function updatePost($data){
-        $this->db->query("UPDATE posts SET title = :title, body = :body WHERE post_id = :id");
+        $this->db->query("UPDATE posts SET title = :title, body = :body, category = :category WHERE post_id = :id");
 
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':body', $data['body']);
+        $this->db->bind(':category', $data['category']);
         $this->db->bind(':id', $data['id']);
 
         if($this->db->execute()) {

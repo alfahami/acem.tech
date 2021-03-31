@@ -102,11 +102,17 @@ textarea {
   font-size: 1rem;
   font-weight: bold;
 }
+.m-heading {
+  margin: 1.5rem 0 0 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
 
 .bio {
   border: solid 1px var(--primary-color);
   padding: 0.875rem;
-  border-radius: 5%;
+  border-radius: 1%;
+  float: right;
 }
 
 .category {

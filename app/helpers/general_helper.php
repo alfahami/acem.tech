@@ -34,7 +34,7 @@ function word_count($string) {
 // Category color helper
 function colors_category($category_name) {
     switch ($category_name) {
-        case 'Nouveaute':
+        case 'Nouveautes':
         case 'alaune':
             echo "category-alaune";
             break;

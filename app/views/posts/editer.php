@@ -12,8 +12,17 @@
                     <div class="form-group">
                         <input type="text" name="title" id="title" value="<?php if(!empty($data['post']->title))  echo $data['post']->title; ?>">
                     </div>
-
-
+                    <div class="py-1 form-group">
+                        <label for="category">Choisir une catégorie</label>
+                        <select name="categories" id="category">
+                            <option value="Festivites">Festivites</option>
+                            <option value="Projets">Projet</option>
+                            <option value="Nouveautes">Nouveaute</option>
+                            <option value="Communiques">Communique</option>
+                            <option value="archives">Archives</option>
+                        </select>
+                        <span class="invalid-feedback"><?php echo $data['category_error']; ?></span>
+                    </div>
                 <span class="invalid-feedback"><?php echo $data['body_error'] ? $data['body_error'] : ''; ?></span>
                 <div class="form-group">
                     <textarea name="body" id="editor1" cols="80" rows="20" placeholder="article message">
