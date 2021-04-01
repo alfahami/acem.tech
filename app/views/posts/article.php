@@ -15,7 +15,7 @@
                     <?php if(!empty($_SESSION['user_id'])) : ?>
                     <div>
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['post']->post_id; ?>" class="btn-sm">Editer</a>
-                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $data['post']->post_id; ?>">
+                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $data['post']->post_id; ?>" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article? Suppression irreversible!')">
                             <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
                         </form>
                     </div>

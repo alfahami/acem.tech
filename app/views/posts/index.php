@@ -37,7 +37,7 @@
                             <small class="left-text"><?php formatDateMin($post->published_at); ?></small>
 
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $post->post_id; ?>" class="btn-sm">Editer</a>
-                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $post->post_id; ?>">
+                        <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $post->post_id; ?>" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article? Suppression irreversible!')">
                         <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
                         </form>
                     </div>
@@ -66,7 +66,7 @@
                         <p><?php echo $data['user']->bio; ?></p>
                     </div>
                     <div class="clearfix"></div>
-                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/supprimerCompte/<?php echo $data['user']->id; ?>" class="right-text">
+                    <form method="post" action="<?php echo URLROOT; ?>/utilisateurs/supprimerCompte/<?php echo $data['user']->id; ?>" class="right-text" onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte? Toutes vos articles seront perdus!')">
                         <a href="<?php echo URLROOT; ?>/posts/editerBio/<?php echo $_SESSION['user_id']; ?>" clas="btn-sm">Modifier</a>
                         <input type="hidden" name="img-name" value="<?php echo $data['user']->picture_name; ?>">
                         <input class="btn-default mt-1 text-red" type="submit" value="Supprimer votre compte" title="Suprression définitive, vos articles seront perdus pour toujours">

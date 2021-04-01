@@ -33,7 +33,7 @@
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                     <small>By <strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong> on <?php echo $post->published_at; ?></small>
+                                     <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a> on <?php echo $post->published_at; ?></small>
                                 </div>
                             </article>
                         <?php } else { ?>
@@ -46,7 +46,7 @@
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                    <small>By <strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong> on <?php echo $post->published_at; ?></small>
+                                    <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a> on <?php echo $post->published_at; ?></small>
                                 </div>
                                 <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
 
