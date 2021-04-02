@@ -9,11 +9,11 @@
                 <h1 class="l-heading"><?php echo $data['post']->title; ?></h1>
                 <div class="meta">
                     <small>
-                        <i class="fas fa-user"></i>Ecrit par <span class="text-bold"><?php echo $data['user']->firstname . ' ' . $data['user']->lastname;?></span>, <span class="date"><?php formatDateMin($data['post']->published_at); ?></span>
+                        <i class="fas fa-user"></i>Ecrit par <span class="text-bold"><?php echo $data['user']->firstname . ' ' . $data['user']->lastname;?></span><span class="hide">, <span class="date"><?php formatDateMin($data['post']->published_at); ?></span></span>
                     </small>
                     <!-- SHOW BUTTONS IF USER IS LOGGED IN -->
                     <?php if(!empty($_SESSION['user_id'])) : ?>
-                    <div>
+                    <div class="hide">
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['post']->post_id; ?>" class="btn-sm">Editer</a>
                         <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $data['post']->post_id; ?>" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article? Suppression irreversible!')">
                             <input type="submit" name="supprimer" class="btn-sm text-red" value="Supprimer" title="Suppression irreversible">
@@ -23,6 +23,7 @@
 
                     <div class="category <?php colors_category($data['post']->category);?>"><?php echo $data['post']->category; ?></div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="p-news mb-1">
                     <?php echo $data['post']->body; ?>
                 </div>

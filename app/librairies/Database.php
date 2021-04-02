@@ -79,4 +79,8 @@ class Database {
     public function rowCount() {
         return $this->stmt->rowCount();
     }
+
+    public function addQuote($string){
+        $this->dbh->quote($string);
+    }
 }

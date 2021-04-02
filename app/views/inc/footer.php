@@ -17,7 +17,7 @@
           </div>
           <div>
             <h4>NOUS CONTACTEZ</h4>
-            <form action="" id="contact-form">
+            <form action="<?php ?>" id="contact-form" method="post">
                 <input type="text" name="nom-prenom" placeholder="Nom & Prénom">
                 <input type="email" name="email" placeholder="Email">
                 <textarea name="messge" cols="30" rows="5" placeholder="Votre message"></textarea>

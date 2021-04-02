@@ -1099,32 +1099,38 @@ textarea::placeholder {
 }
 
 @media (max-width: 500px) {
+
   #article .page-container .card h1 {
     font-size: 1rem;
   }
 
   #article .page-container .meta {
-    float: left;
     padding: 0.5rem;
   }
+
+  .hide { display: none; }
 }
 
-/* Catégorie */
-#categorie .page-container .articles {
+/* Catégorie et resultat */
+#categorie .page-container .articles,
+#resultat .page-container .articles{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.875rem;
 }
-#categorie .page-container .articles article {
+#categorie .page-container .articles article,
+#resultat .page-container .articles article{
   max-height: 450px;
 }
 
-#categorie .articles .error-category {
+#categorie .articles .error-category,
+#resultat .articles .error-category {
   grid-column: 1 / span 2;
 }
 
 @media(max-width: 500px){
-  #categorie .page-container .articles {
+  #categorie .page-container .articles,
+  #resultat .page-container .articles {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }

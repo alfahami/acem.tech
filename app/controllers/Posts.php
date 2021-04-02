@@ -357,7 +357,15 @@ class Posts extends Controller
             if(empty($data)){
                 redirect('pages/index');
             } else {
-                $this->view('posts/resultat');
+                if($this->postModel->findByKeyword($data) != false){
+                    $data = $this->postModel->findByKeyword($data);
+                    $this->view('posts/resultat', $data);
+                } else {
+                    flash('keyword_not_found', 'Aucun article ne correspond à votre recherche','alert alert-danger');
+                    $data = NULL;
+                    $this->view('posts/resultat', $data);
+                }
+
             }
         } else {
             die('How in the hell did you do to be able to see this message! Please contact me at webmaster@news-acemcom');

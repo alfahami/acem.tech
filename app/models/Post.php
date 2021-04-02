@@ -69,10 +69,24 @@ class Post
     }
 
     public function findByKeyword($keyword){
-        $this->db->query("SELECT * FROM posts WHERE body LIKE CONCAT('%', :keyword, '%')");
-        $this->db->bind(':keyword', $keyword);
+        $keywordBind = '';
+        // Split the string to search
+        $keywords = preg_split('/\s+/', $keyword);
+        $numKeywords = count($keywords);
+        for ($i = 0; $i < $numKeywords; $i++){
+            //$this->db->addQuote($keywords[$i]);
+            $keywordBind .= ",".$keywords[$i]." ";
+        }
 
-        return $this->db->resultSet();
+        $this->db->query("select * from posts where match(body) against(:keywords)");
+
+        $this->db->bind(':keywords', $keywordBind);
+
+        if($this->db->execute()){
+            return $this->db->resultSet();
+        } else {
+            return false;
+        }
     }
 
     public function deletePost($post_id){
