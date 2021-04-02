@@ -348,6 +348,23 @@ class Posts extends Controller
 
     }
 
+    public function resultat(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = trim($_POST['content']);
+
+            if(empty($data)){
+                redirect('pages/index');
+            } else {
+                $this->view('posts/resultat');
+            }
+        } else {
+            die('How in the hell did you do to be able to see this message! Please contact me at webmaster@news-acemcom');
+        }
+
+    }
+
     public function supprimer($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -43,11 +43,6 @@
 
                 <div class="clearfix"></div>
 
-                <div class="writer mt-1">
-                    <img src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
-                    <h3><?php echo $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname']; ?></h3>
-                    <p><?php echo $_SESSION['user_bio']; ?></p>
-                </div>
             </article>
 
             <div class="sidebar">
