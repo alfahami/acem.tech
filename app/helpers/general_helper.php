@@ -35,8 +35,8 @@ function colors_category($category_name) {
             echo "category-festivites";
             break;
 
-        case 'Communique':
-        case 'communique':
+        case 'Communiques':
+        case 'communiques':
             echo "category-communiques";
             break;
 
@@ -45,8 +45,8 @@ function colors_category($category_name) {
             echo "category-innovation";
             break;
 
-        case 'Projet':
-        case 'projet':
+        case 'Projets':
+        case 'projets':
             echo "category-projets";
             break;
 

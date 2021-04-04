@@ -56,14 +56,7 @@
                     <h3 class="article-heading"><a href="article.html">Nous ecrire</a></h3>
                     <p><a href="#"><i class="fas fa-globe-africa"></i> acemfes.com/nouscontacter</a></p>
                 </article>
-
-                <article class="card bg-light">
-                    <div class="category category-alaune">PUBLICITE</div>
-                    <h3 class="article-heading"><a href="article.html">Votre publicite ici</a></h3>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur ut fugiat officiis laborum architecto, labore natus eveniet eos ullam assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum possimus iure iste dignissimos, magni vel numquam id tempora perferendis quod! Ex, dolore similique? Veniam rem doloremque, soluta ex impedit illo?
-                    </p>
-                </article>
+                
             </div>
         </div>
     </div>

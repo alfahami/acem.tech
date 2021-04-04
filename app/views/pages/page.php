@@ -1,21 +1,21 @@
 <?php include APPROOT . '/views/inc/header.php';?>
-      <!-- #Showcase -->
-      <section id="showcase">
-        <div class="container">
-          <div class="showcase-container">
+<!-- #Showcase -->
+<section id="showcase">
+    <div class="container">
+        <div class="showcase-container">
             <div class="showcase-content">
-              <div class="category category-festivites">Festivites</div>
-              <h1>Journee Scientifique &amp; Culturelle</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aperiam a sit ut dolore neque minima eius temporibus ullam! Impedit nobis rerum, recusandae tempora quaerat nemo reprehenderit soluta magnam excepturi</p>
-              <div class="btn btn-primary"><a href="#"> En Savoir Plus</a></div>
+                <div class="category category-festivites">Festivites</div>
+                <h1>Journee Scientifique &amp; Culturelle</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aperiam a sit ut dolore neque minima eius temporibus ullam! Impedit nobis rerum, recusandae tempora quaerat nemo reprehenderit soluta magnam excepturi</p>
+                <div class="btn btn-primary"><a href="#"> En Savoir Plus</a></div>
             </div>
-          </div>
         </div>
-      </section>
-      <!-- #Home Articles -->
+    </div>
+</section>
+<!-- #Home Articles -->
 
 <section class="dashboard">
-    <div class="container pt-2">
+    <div class="container py-2">
         <h2>DERNIERES PUBLICATIONS</h2>
         <div class="article-container py-1">
             <div class="articles">
@@ -25,7 +25,7 @@
 
                             <article class="card bg-light">
                                 <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
-                                 <div>
+                                <div>
                                     <div class="category <?php colors_category($post->category);?>"><?php echo $post->category; ?></div>
                                     <h3 class="article-heading"><a href="<?php echo URLROOT; ?>/posts/article/<?php echo $post->post_id; ?>"><?php echo $post->title; ?></a></h3>
                                     <p>
@@ -33,7 +33,7 @@
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                     <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
+                                    <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
                                 </div>
                             </article>
                         <?php } else { ?>
@@ -52,11 +52,19 @@
 
                             </article>
 
-                    <?php } endforeach;
+                        <?php } endforeach;
                 } ?>
                 <div id="pagination-button" class="text-center py-1">
-                   <a href="javascript:void(0)" style="cursor: default;" title="précédent"><i class="fas fa-arrow-circle-left"></i></a>
-                    <a href="<?php echo URLROOT; ?>/accueil/page/2" method="post" id="pagination-form" title="suivant"><i class="fas fa-arrow-circle-right"></i></a>
+                        <?php if($data['current_page'] > 2) { ?>
+                             <a href="<?php echo URLROOT; ?>/accueil/page/<?php echo $data['current_page'] - 1;?>" title="précédent"><i class="fas fa-arrow-circle-left"></i></a>
+                        <?php } else if($data['current_page'] == 2){ ?>
+                            <a href="<?php echo URLROOT; ?>/accueil/" title="accueil"><i class="fas fa-arrow-circle-left"></i></a>
+
+                        <?php } if($data['current_page'] < $data['total_pages']){ ?>
+                        <a href="<?php echo URLROOT; ?>/accueil/page/<?php echo $data['current_page'] + 1 ;?>" title="suivant"><i class="fas fa-arrow-circle-right"></i></a>
+                       <?php   } else if($data['current_page'] == $data['total_pages']){ ?>
+                    <a href="javascript:void(0)" title="page finale"><i class="fas fa-arrow-circle-right"></i></a>
+                    <?php } ?>
                 </div>
             </div>
 

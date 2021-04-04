@@ -6,7 +6,7 @@
           </div>
 
           <div class="acemfes-site-map">
-            <h4>ACEM FES SITEMAP</h4>
+            <h4>ACEM SITEMAP</h4>
             <ul class="list">
               <li><a href="#">ACCUEIL</a></li>
               <li><a href="#">BUREAU</a></li>
@@ -26,7 +26,7 @@
           </div>
 
           <div class="author-copyright">
-            <p><small>Copyright &copy; 2020, Tous droits reservés | <a href="#">ACEM FES</small></a></p>
+            <p><small>Copyright &copy; 2020, Tous droits reservés | <a href="#">ACEM MAROC</small></a></p>
             <p><small>Designed and Coded with <i class="fas fa-heart"></i> by <a href="#">AL-FAHAMI TOIHIR</a></small></p>
           </div>
         </div>

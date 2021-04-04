@@ -69,18 +69,25 @@ class Post
     }
 
     public function findByKeyword($keyword){
-        $keywordBind = '';
+        $keywordBind = NULL;
         // Split the string to search
-        $keywords = preg_split('/\s+/', $keyword);
+        $keywords = array_merge(preg_split('/\s+/', $keyword, PREG_SPLIT_NO_EMPTY));
+        //print_r($keywords);
         $numKeywords = count($keywords);
-        for ($i = 0; $i < $numKeywords; $i++){
-            //$this->db->addQuote($keywords[$i]);
-            $keywordBind .= ",".$keywords[$i]." ";
+        if($numKeywords == 1){
+            $keywordBind = $keyword;
+        } else {
+            for ($i = 0; $i < $numKeywords; $i++) {
+                $keywordBind .= "," . $keywords[$i] . " ";
+            }
         }
+        //echo $keywordBind;
 
-        $this->db->query("select * from posts where match(body) against(:keywords)");
+        // IN BOOLEAN MODE when we want
+        $this->db->query("select * from posts where match(body) against(:search IN BOOLEAN MODE) UNION
+select * from posts where title LIKE CONCAT('%', :search, '%')");
 
-        $this->db->bind(':keywords', $keywordBind);
+        $this->db->bind(':search', $keywordBind);
 
         if($this->db->execute()){
             return $this->db->resultSet();
