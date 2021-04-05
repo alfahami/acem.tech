@@ -31,7 +31,7 @@
                 <span class="invalid-feedback"><?php echo $data['body_err']; ?></span>
             </div>
             <div class="form-group">
-                <input type="text" name="desc_img" placeholder="Description de l'image(Facultatif)" value="<?php echo $data['desc_img'] ? $data['desc_img'] : '';?>">
+                <input type="text" name="desc_img" placeholder="Description de l'image(Facultatif)" value="<?php echo $data['desc-img'] ? $data['desc-img'] : '';?>">
             </div>
             <div class="form-group mt-1">
                 <input type="file" name="img_article" id="">
