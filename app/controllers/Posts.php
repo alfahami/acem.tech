@@ -9,10 +9,12 @@ class Posts extends Controller
 {
     private $postModel;
     private $userModel;
+    private $accueilModel;
     public function __construct()
     {
         $this->postModel = $this->model('Post');
         $this->userModel = $this->model('Utilisateur');
+        $this->accueilModel = $this->model('Accueils');
     }
 
     public function index(){
@@ -68,6 +70,7 @@ class Posts extends Controller
                     'title'         => trim($_POST['title']),
                     'category'      => trim($_POST['categories']),
                     'body'          => $content,
+                    'desc-img'      => trim($_POST['desc_img']),
                     'filename'      => $filename,
                     'title_err'     => '',
                     'category_err'  => '',
@@ -161,6 +164,7 @@ class Posts extends Controller
                     'title'         => '',
                     'category'      => '',
                     'body'          => '',
+                    'desc_img'      => '',
                     'filename'      => '',
                     'title_err'     => '',
                     'category_err'  => '',
@@ -185,6 +189,7 @@ class Posts extends Controller
                 $data = [
                     'id' => $id,
                     'title' => trim($_POST['title']),
+                    'desc_img' => trim($_POST['desc_img']),
                     'category'      => trim($_POST['categories']),
                     'body' => $content,
                     'title_error' => '',
@@ -355,7 +360,8 @@ class Posts extends Controller
             $data = trim($_POST['content']);
 
             if(empty($data)){
-                redirect('pages/index');
+               $data = $this->accueilModel->getPosts();
+               $this->view('posts/resultat', $data);
             } else {
                 if($this->postModel->findByKeyword($data) != false){
                     $data = $this->postModel->findByKeyword($data);

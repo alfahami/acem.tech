@@ -6,8 +6,8 @@
             <div class="showcase-content">
               <div class="category category-festivites">Festivites</div>
               <h1>Journee Scientifique &amp; Culturelle</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aperiam a sit ut dolore neque minima eius temporibus ullam! Impedit nobis rerum, recusandae tempora quaerat nemo reprehenderit soluta magnam excepturi</p>
-              <div class="btn btn-primary"><a href="#"> En Savoir Plus</a></div>
+              <p>L'association des comoriens étudiant au Maroc (ACEM) est une association qui entre dans le cadre estudiantin, sociale, scientifique, culturel et aussi religieux. Depuis 2002, l' ACEM organise chaque année des activités scientifiques et culturelles dans le but de ...
+              <div class="btn btn-primary"><a href="<?php echo URLROOT; ?>/jsc-fes-2021/"> En Savoir Plus</a></div>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                     <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
+                                     <small>Par <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
                                 </div>
                             </article>
                         <?php } else { ?>
@@ -46,7 +46,7 @@
                                         echo word_count($str);
                                         ?>
                                     </p>
-                                    <small>By <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
+                                    <small>Par <a href="<?php echo URLROOT; ?>/utilisateurs/profile/<?php echo $post->user_id; ?>"><strong class="italic"><?php echo $post->firstname .' '. $post->lastname; ?></strong></a>, <?php formatDate($post->published_at); ?></small>
                                 </div>
                                 <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
 
@@ -63,12 +63,12 @@
 
             <div class="sidebar">
                 <article class="card bg-dark">
-                    <div class="category category-communiques">Communique</div>
-                    <h3 class="article-heading"><a href="article.html">Mot du SG de l'ACEM FES</a></h3>
+                    <div class="category category-communiques">Communiques</div>
+                    <h3 class="article-heading"><a href="article.html">Mot du President de l'ACEM</a></h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Consectetur ut fugiat officiis laborum architecto, labore natus
-                        eveniet eos ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet aspernatur consequatur dolore eaque.
+                        eveniet eos ullam assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                     </p>
                 </article>
                 <article class="card bg-light">
@@ -80,14 +80,7 @@
                         Consectetur ut fugiat officiis laborum architecto.
                     </p>
                 </article>
-                <article class="card bg-dark">
-                    <div class="category category-communiques">Bureau Executif</div>
-                    <h3 class="article-heading"><a href="article.html">Mot du President de l'ACEM</a></h3>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Consectetur ut fugiat officiis laborum architecto, labore natus
-                        eveniet eos ullam assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    </p>
+
                 </article>
                 <article class="card bg-light">
                     <div class="category category-alaune">A La Une</div>

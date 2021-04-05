@@ -6,13 +6,14 @@
         <div class="page-container">
             <article class="card bg-light">
                 <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
+                <span><small><?php echo $data['post']->desc_img; ?></small></span>
                 <h1 class="l-heading"><?php echo $data['post']->title; ?></h1>
                 <div class="meta">
                     <small>
                         <i class="fas fa-user"></i>Ecrit par <span class="text-bold"><?php echo $data['user']->firstname . ' ' . $data['user']->lastname;?></span><span class="hide">, <span class="date"><?php formatDateMin($data['post']->published_at); ?></span></span>
                     </small>
                     <!-- SHOW BUTTONS IF USER IS LOGGED IN -->
-                    <?php if($data['user'] == $_SESSION['user_id']) : ?>
+                    <?php if($data['user']->id == $_SESSION['user_id']) : ?>
                     <div class="hide">
                         <a href="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['post']->post_id; ?>" class="btn-sm">Editer</a>
                         <form class="inline" method="post" action="<?php echo URLROOT; ?>/posts/supprimer/<?php echo $data['post']->post_id; ?>" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article? Suppression irreversible!')">

@@ -22,7 +22,7 @@
                     <option value="Projets">Projet</option>
                     <option value="Nouveautes">Nouveaute</option>
                     <option value="Communiques">Communique</option>
-                    <option value="archives">Archives</option>
+                    <option value="Archives">Archives</option>
                 </select>
                 <span class="invalid-feedback"><?php echo $data['category_err']; ?></span>
             </div>
@@ -31,12 +31,17 @@
                 <span class="invalid-feedback"><?php echo $data['body_err']; ?></span>
             </div>
             <div class="form-group">
+                <input type="text" name="desc_img" placeholder="Description de l'image(Facultatif)" value="<?php echo $data['desc_img'] ? $data['desc_img'] : '';?>">
+            </div>
+            <div class="form-group mt-1">
                 <input type="file" name="img_article" id="">
                 <span class="invalid-feedback"><?php echo $data['filename_err']; ?></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group align-right">
                 <input type="submit" class="btn btn-primary" value="Publier">
             </div>
+            <div class="clearfix"></div>
         </form>
     </div>
 </section>

@@ -8,7 +8,6 @@ class Accueils {
 
     public function getPosts() {
         $this->db->query('SELECT * FROM posts ORDER BY published_at DESC');
-
         return $this->db->resultSet();
     }
 

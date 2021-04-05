@@ -56,7 +56,7 @@
                     <h3 class="article-heading"><a href="article.html">Nous ecrire</a></h3>
                     <p><a href="#"><i class="fas fa-globe-africa"></i> acemfes.com/nouscontacter</a></p>
                 </article>
-                
+
             </div>
         </div>
     </div>

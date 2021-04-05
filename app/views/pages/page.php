@@ -15,7 +15,7 @@
 <!-- #Home Articles -->
 
 <section class="dashboard">
-    <div class="container py-2">
+    <div class="container pt-2">
         <h2>DERNIERES PUBLICATIONS</h2>
         <div class="article-container py-1">
             <div class="articles">
