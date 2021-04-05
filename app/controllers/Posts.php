@@ -5,6 +5,10 @@
  *
  * @package \\${NAMESPACE}
  */
+/*
+ * TO DO: contact form
+ * Enable user ot change article picture
+ */
 class Posts extends Controller
 {
     private $postModel;
@@ -92,7 +96,7 @@ class Posts extends Controller
                 if(empty($data['filename'])){
                     $data['filename_err'] = 'Veuillez inclure une image';
                 }
-                if(empty($data['title_err']) && empty($data['category_err']) && empty($data['body_err']) && empty($data['filename_err'])) {
+                if(empty($data['title_err']) && empty($data['category_err']) && empty($data['body_err']) && empty($data['filename_err']) && !empty($data['desc-img'])) {
 //                    Handling store image errors
                     // Check if file was uploaded without errors
                     if(isset($_FILES["img_article"]) && $_FILES["img_article"]["error"] == 0){
