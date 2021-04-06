@@ -30,6 +30,23 @@ class Post
         }
     }
 
+    public function editerPost($data){
+        $this->db->query("UPDATE posts SET title = :title, body = :body, category = :category, img_name = :img_name, desc_img = :desc_img WHERE post_id = :id");
+
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':body', $data['body']);
+        $this->db->bind(':category', $data['category']);
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':img_name', $data['filename']);
+        $this->db->bind(':desc_img', $data['desc_img']);
+
+        if($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function updatePostNoImage($data){
         $this->db->query("UPDATE posts SET title = :title, body = :body, category = :category, desc_img = :desc_img WHERE post_id = :id");
 

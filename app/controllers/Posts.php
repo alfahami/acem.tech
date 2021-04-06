@@ -5,10 +5,8 @@
  *
  * @package \\${NAMESPACE}
  */
-/*
- * TO DO: contact form
- * Enable user ot change article picture
- */
+// TO DO: image size error handling with img_upload function helper
+
 class Posts extends Controller
 {
     private $postModel;
@@ -186,7 +184,6 @@ class Posts extends Controller
         if(isLoggedIn()) {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
                 // ckeditor textarea shouldn't be sanitized
                 $content = $_POST['body'];
                 $filename = $_FILES['img_article']['name'];
@@ -196,6 +193,7 @@ class Posts extends Controller
                     'title' => trim($_POST['title']),
                     'desc_img' => trim($_POST['desc_img']),
                     'filename' => $filename,
+                    'old_img' => trim($_POST['old_img']),
                     'category' => trim($_POST['categories']),
                     'body' => $content,
                     'title_error' => '',
@@ -216,7 +214,7 @@ class Posts extends Controller
                 }
 
                 // Make sure no errors left
-                if (empty($data['title_error']) && empty($data['filename']) && empty($data['body_error']) && empty($data['category_error'])) {
+                if (empty($data['title_error']) && empty($data['filename']) && empty($data['body_error']) && empty($data['category_error']) && empty($data['filename'])) {
                     if ($this->postModel->updatePostNoImage($data)) {
                         flash('post_update_success', 'Votre poste a été mis à jour');
                         redirect('posts/dashboard');
@@ -227,9 +225,24 @@ class Posts extends Controller
                 } // If user submit the form with an image
                  else if(empty($data['title_error']) && !empty($data['filename']) && empty($data['body_error']) && empty($data['category_error'])) {
                      // Upload new image and delete old image
-                     $input_name = 'article_image';
+                     $input_name = 'img_article';
                      $view = 'posts/editer';
                      $dest_path = 'storage/posts';
+
+                     if(upload_image($input_name, $data, $view, $dest_path)) {
+                         $data['filename'] = FILENAME;
+                         if ($this->postModel->editerPost($data)) {
+                             // Delete old image from server
+                             $old_img = SITE_ROOT . "/storage/posts/" . $data['old_img'];
+                             unlink($old_img);
+                             flash('bio_success', 'Votre buddy a été mis à jour');
+                             redirect('posts/dashboard');
+                         } else {
+                             die('Une erreur est survenue. Merci de ressayer');
+                         }
+                     } else if(upload_image($input_name, $data, $view, $dest_path) == false){
+                         flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
+                     }
 
                  }
                 // Displaying errors
@@ -274,7 +287,6 @@ class Posts extends Controller
     public function editerBio($id){
         if(isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $filename = $_FILES['profile_image']['name'];
 

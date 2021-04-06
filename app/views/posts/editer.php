@@ -7,7 +7,8 @@
         <div class="page-container">
             <article class="card bg-light">
                 <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
-                <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form">
+                <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form" enctype="multipart/form-data">
+                    <input type="hidden" name="old_img" value="<?php echo $data['post']->img_name; ?>">
                     <div class="form-group mt-1">
                         <input type="file" name="img_article" id="">
                         <span class="invalid-feedback"><?php echo $data['filename_err']; ?></span>
