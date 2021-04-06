@@ -31,7 +31,7 @@
            </div>
              <div class="form-group">
                  <label for="bio">Intro ou bio</label>
-                 <textarea name="bio" id="bio" class="<?php echo (!empty($data['bio_err'])) ? 'is-invalid' : ''; ?>" rows="5" ></textarea> <br>
+                 <textarea name="bio" id="bio" class="<?php echo (!empty($data['bio_err'])) ? 'is-invalid' : ''; ?>" rows="2" ></textarea> <br>
                  <span class="invalid-feedback"><?php echo $data['bio_err']; ?></span>
              </div>
            <input type="submit" value="Inscrivez-vous" class="btn btn-primary">

@@ -30,7 +30,7 @@ class Post
         }
     }
 
-    public function updatePost($data){
+    public function updatePostNoImage($data){
         $this->db->query("UPDATE posts SET title = :title, body = :body, category = :category, desc_img = :desc_img WHERE post_id = :id");
 
         $this->db->bind(':title', $data['title']);

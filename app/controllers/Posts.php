@@ -106,7 +106,7 @@ class Posts extends Controller
                         $filesize = $_FILES["img_article"]["size"];
 
                         // Verify file extension
-                        $maxsize = 5 * 1024 * 1024;
+                        $maxsize = 10 * 1024 * 1024;
                         $extension = pathinfo($filename, PATHINFO_EXTENSION);
                         if(!array_key_exists($extension, $allowed)) {
                             flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
@@ -189,14 +189,17 @@ class Posts extends Controller
 
                 // ckeditor textarea shouldn't be sanitized
                 $content = $_POST['body'];
+                $filename = $_FILES['img_article']['name'];
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $data = [
                     'id' => $id,
                     'title' => trim($_POST['title']),
                     'desc_img' => trim($_POST['desc_img']),
-                    'category'      => trim($_POST['categories']),
+                    'filename' => $filename,
+                    'category' => trim($_POST['categories']),
                     'body' => $content,
                     'title_error' => '',
+                    'filename_err' => '',
                     'category_error' => '',
                     'body_error' => ''
                 ];
@@ -213,14 +216,23 @@ class Posts extends Controller
                 }
 
                 // Make sure no errors left
-                if (empty($data['title_error']) && empty($data['body_error']) && empty($data['category_error'])) {
-                    if ($this->postModel->updatePost($data)) {
+                if (empty($data['title_error']) && empty($data['filename']) && empty($data['body_error']) && empty($data['category_error'])) {
+                    if ($this->postModel->updatePostNoImage($data)) {
                         flash('post_update_success', 'Votre poste a été mis à jour');
                         redirect('posts/dashboard');
                     } else {
                         die('Une erreur est survenue! Merci de ressayer');
                     }
-                } // Displaying errors
+
+                } // If user submit the form with an image
+                 else if(empty($data['title_error']) && !empty($data['filename']) && empty($data['body_error']) && empty($data['category_error'])) {
+                     // Upload new image and delete old image
+                     $input_name = 'article_image';
+                     $view = 'posts/editer';
+                     $dest_path = 'storage/posts';
+
+                 }
+                // Displaying errors
                 else {
                     $this->view('posts/editer', $data);
                 }
@@ -237,7 +249,8 @@ class Posts extends Controller
                     'post' => $post,
                     'body_error' => '',
                     'title_error' => '',
-                    'category_error' => ''
+                    'category_error' => '',
+                    'filename_err'  => ''
                 ];
                 $this->view('posts/editer', $data);
             }
@@ -261,16 +274,16 @@ class Posts extends Controller
     public function editerBio($id){
         if(isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // Variable for image procesing function
-                $input_name = 'profile_image';
+
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $filename = $_FILES[$input_name]['name'];
+                $filename = $_FILES['profile_image']['name'];
 
                 $data = [
                     'id' => $id,
                     'filename' => $filename,
                     'fname' => trim($_POST['fname']),
                     'lname' => trim($_POST['lname']),
+                    'old_img' => trim($_POST['old_img']),
                     'bio' => trim($_POST['bio']),
                     'filename_error' => '',
                     'fname_err' => '',
@@ -301,6 +314,9 @@ class Posts extends Controller
                     if(upload_image($input_name, $data, $view, $dest_path)) {
                         $data['filename'] = FILENAME;
                         if ($this->userModel->editerBio($data)) {
+                            // Delete old image from server
+                            $old_img = SITE_ROOT . "/storage/profiles/" . $data['old_img'];
+                            unlink($old_img);
                             flash('bio_success', 'Votre bio a été mis à jour');
                             redirect('posts/index');
                         } else {

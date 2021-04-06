@@ -31,12 +31,15 @@
                 <span class="invalid-feedback"><?php echo $data['body_err']; ?></span>
             </div>
             <div class="form-group">
-                <input type="text" name="desc_img" placeholder="Description de l'image(Facultatif)" value="<?php echo $data['desc-img'] ? $data['desc-img'] : '';?>">
+                <input type="text" name="desc_img" placeholder="Description de l'image(Facultatif)" value="<?php echo $data['desc_img'] ? $data['desc_img'] : '';?>">
             </div>
             <div class="form-group mt-1">
                 <input type="file" name="img_article" id="">
                 <span class="invalid-feedback"><?php echo $data['filename_err']; ?></span>
             </div>
+
+
+                <a class="alert-danger" href="<?php echo URLROOT; ?>/posts/index">Annuler</a>
 
             <div class="form-group align-right">
                 <input type="submit" class="btn btn-primary" value="Publier">

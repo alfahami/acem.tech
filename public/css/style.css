@@ -234,7 +234,7 @@ textarea {
   transition: all 0.5s ease-in-out;
   color: var(--light-color);
   opacity: 0.8;
-  border-radius: 9%;
+  /*border-radius: 9%;*/
 }
 
 .btn-primary:hover {
@@ -1006,7 +1006,7 @@ textarea::placeholder {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--primary-color);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
 }
 
 #article .page-container .meta {

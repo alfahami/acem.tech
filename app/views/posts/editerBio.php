@@ -54,7 +54,7 @@
                 <?php } else { ?>
                     <img id="profile-pic" src="<?php echo URLROOT; ?>/public/images/avatar.png" alt="">
                  <?php } ?>
-
+                    <input type="hidden" name="old_img" value="<?php echo $data['user']->picture_name; ?>">
                 <div class="align-right">
                     <input type="file" name="profile_image" id="" class="align-right">
                 </div>

@@ -8,11 +8,17 @@
             <article class="card bg-light">
                 <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
                 <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form">
+                    <div class="form-group mt-1">
+                        <input type="file" name="img_article" id="">
+                        <span class="invalid-feedback"><?php echo $data['filename_err']; ?></span>
+                    </div>
                     <div class="form-group mb-1">
+                        <label for="img-desc"><smal>Description de l'image(Facultatif)</smal></label>
                         <input type="text" name="desc_img" value="<?php echo $data['post']->desc_img ? $data['post']->desc_img : '';?>" placeholder="Description de l'image(Facultatif)">
                     </div>
                     <span class="invalid-feedback"><?php echo $data['title_error'] ? $data['title_error'] : ''; ?></span>
                     <div class="form-group">
+                        <labe for="title">Titre</labe>
                         <input type="text" name="title" id="title" value="<?php if(!empty($data['post']->title))  echo $data['post']->title; ?>">
                     </div>
                     <div class="py-1 form-group">
