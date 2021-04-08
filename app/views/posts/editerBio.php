@@ -9,6 +9,12 @@
             flash('post_update_success');
             flash('delete_success');
             flash('delete_error');
+            flash('file_size_error');
+            flash('file_format_error');
+            flash('file_exist_error');
+            flash('file_upload_error');
+            flash('file_input_error');
+            flash('input_img_error');
             ?>
 
         </div>
@@ -20,7 +26,6 @@
         <div class="article-container py-1">
             <div class="articles">
                 <?php flash('post_success'); ?>
-                <?php flash('format_error'); ?>
 
                 <?php foreach($data['posts'] as $post) : ?>
 

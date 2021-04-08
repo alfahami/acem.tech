@@ -5,10 +5,11 @@
  *
  * @package \\${NAMESPACE}
  */
-// TO DO: image size error handling with img_upload function helper
 
 class Posts extends Controller
 {
+    // TO DO: image size error handling with img_upload function helper
+
     private $postModel;
     private $userModel;
     private $accueilModel;
@@ -104,7 +105,7 @@ class Posts extends Controller
                         $filesize = $_FILES["img_article"]["size"];
 
                         // Verify file extension
-                        $maxsize = 10 * 1024 * 1024;
+                        $maxsize = 5 * 1024 * 1024;
                         $extension = pathinfo($filename, PATHINFO_EXTENSION);
                         if(!array_key_exists($extension, $allowed)) {
                             flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
@@ -235,7 +236,7 @@ class Posts extends Controller
                              // Delete old image from server
                              $old_img = SITE_ROOT . "/storage/posts/" . $data['old_img'];
                              unlink($old_img);
-                             flash('bio_success', 'Votre buddy a été mis à jour');
+                             flash('bio_success', 'Votre bio a été mis à jour');
                              redirect('posts/dashboard');
                          } else {
                              die('Une erreur est survenue. Merci de ressayer');
@@ -322,24 +323,56 @@ class Posts extends Controller
                     $input_name = 'profile_image';
                     $view = 'posts/editerBio';
                     $dest_path = 'storage/profiles';
+                    $img_upload_status = upload_image($input_name, $data, $view, $dest_path);
 
-                    if(upload_image($input_name, $data, $view, $dest_path)) {
-                        $data['filename'] = FILENAME;
-                        if ($this->userModel->editerBio($data)) {
-                            // Delete old image from server
-                            $old_img = SITE_ROOT . "/storage/profiles/" . $data['old_img'];
-                            unlink($old_img);
-                            flash('bio_success', 'Votre bio a été mis à jour');
-                            redirect('posts/index');
-                        } else {
-                            die('Une erreur est survenue. Merci de ressayer');
-                        }
-                    } else if(upload_image($input_name, $data, $view, $dest_path) == false){
-                        flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
-                        $data['posts'] = $this->postsByUser();
-                        $data['user'] = $this->userModel->getUserById($id);
-                        $this->view($view, $data);
+                    switch ($img_upload_status){
+                        case 'file_format_error':
+                            flash('file_format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
+                            $data['posts'] = $this->postsByUser();
+                            $data['user'] = $this->userModel->getUserById($id);
+                            $this->view('posts/editerBio', $data);
+                            break;
 
+                        case 'file_size_error':
+                            flash('file_size_error', 'File size is larger than the allowed size', 'alert alert-danger');
+                            $data['posts'] = $this->postsByUser();
+                            $data['user'] = $this->userModel->getUserById($id);
+                            $this->view('posts/editerBio', $data);
+                            break;
+
+                        case 'file_exist_error':
+                            flash('file_exist_error', 'File already exists, choose another one', 'alert alert-danger');
+                            $data['posts'] = $this->postsByUser();
+                            $data['user'] = $this->userModel->getUserById($id);
+                            $this->view('posts/editerBio', $data);
+                            break;
+
+                        case 'true':
+                            $data['filename'] = FILENAME;
+                            if ($this->userModel->editerBio($data)) {
+                                // Delete old image from server
+                                $old_img = SITE_ROOT . "/storage/profiles/" . $data['old_img'];
+                                unlink($old_img);
+                                flash('bio_success', 'Votre bio a été mis à jour');
+                                redirect('posts/index');
+                            } else {
+                                die('Une erreur est survenue. Merci de ressayer');
+                            }
+                            break;
+
+                        case 'file_upload_error':
+                            flash('upload_error', 'Error while upload image, please try again', 'alert alert-danger');
+                            $data['posts'] = $this->postsByUser();
+                            $data['user'] = $this->userModel->getUserById($id);
+                            $this->view('posts/editerBio', $data);
+                            break;
+
+                        case 'file_input_error':
+                            flash('input_img_error', 'Erreur! Assurez-vous d inclure une bonne image', 'alert alert-danger');
+                            $data['posts'] = $this->postsByUser();
+                            $data['user'] = $this->userModel->getUserById($id);
+                            $this->view('posts/editerBio', $data);
+                            break;
                     }
                 }
                 // If user don't want to change his profile picture

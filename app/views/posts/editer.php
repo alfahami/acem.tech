@@ -5,6 +5,14 @@
 <section id="article">
     <div class="container">
         <div class="page-container">
+            <?php
+                flash('file_size_error');
+                flash('file_format_error');
+                flash('file_exist_error');
+                flash('file_upload_error');
+                flash('file_input_error');
+                flash('input_img_error');
+            ?>
             <article class="card bg-light">
                 <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
                 <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form" enctype="multipart/form-data">
