@@ -5,35 +5,37 @@
 <section id="article">
     <div class="container">
         <div class="page-container">
-            <?php
-                flash('file_size_error');
-                flash('file_format_error');
-                flash('file_exist_error');
-                flash('file_upload_error');
-                flash('file_input_error');
-                flash('input_img_error');
-            ?>
             <article class="card bg-light">
-                <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $data['post']->img_name; ?>")'></div>
+                <div class="block">
+                    <?php
+                    flash('file_size_error');
+                    flash('file_format_error');
+                    flash('file_exist_error');
+                    flash('file_upload_error');
+                    flash('file_input_error');
+                    flash('input_img_error');
+                    ?>
+                </div>
+                <div class="bkgd-cover-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo (!empty($data['post']->img_name)) ? $data['post']->img_name : $data['old_img']; ?>")'></div>
                 <form action="<?php echo URLROOT; ?>/posts/editer/<?php echo $data['id']; ?>" method="post" id="editpost-form" enctype="multipart/form-data">
-                    <input type="hidden" name="old_img" value="<?php echo $data['post']->img_name; ?>">
+                    <input type="hidden" name="old_img" value="<?php echo !empty($data['post']->img_name) ? $data['post']->img_name : $data['old_img']; ?>">
                     <div class="form-group mt-1">
                         <input type="file" name="img_article" id="">
                         <span class="invalid-feedback"><?php echo $data['filename_err']; ?></span>
                     </div>
                     <div class="form-group mb-1">
                         <label for="img-desc"><smal>Description de l'image(Facultatif)</smal></label>
-                        <input type="text" name="desc_img" value="<?php echo $data['post']->desc_img ? $data['post']->desc_img : '';?>" placeholder="Description de l'image(Facultatif)">
+                        <input type="text" name="desc_img" value="<?php echo (!empty($data['post']->desc_img)) ? $data['post']->desc_img : $data['desc_img'];?>" placeholder="Description de l'image(Facultatif)">
                     </div>
                     <span class="invalid-feedback"><?php echo $data['title_error'] ? $data['title_error'] : ''; ?></span>
                     <div class="form-group">
                         <labe for="title">Titre</labe>
-                        <input type="text" name="title" id="title" value="<?php if(!empty($data['post']->title))  echo $data['post']->title; ?>">
+                        <input type="text" name="title" id="title" value="<?php echo (!empty($data['post']->title)) ? $data['post']->title : $data['title']; ?>">
                     </div>
                     <div class="py-1 form-group">
                         <label for="category">Catégories</label>
                         <select name="categories" id="category">
-                            <option value="<?php echo $data['post']->category;?>" selected><?php echo $data['post']->category; ?></option>
+                            <option value="<?php echo (!empty($data['post']->category)) ? $data['post']->category : $data['category'];?>" selected><?php echo (!empty($data['post']->category)) ? $data['post']->category : $data['category']; ?></option>
                             <option value="Festivites">Festivites</option>
                             <option value="Projets">Projets</option>
                             <option value="Nouveautes">Nouveautes</option>

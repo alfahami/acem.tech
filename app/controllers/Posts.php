@@ -230,21 +230,47 @@ class Posts extends Controller
                      $view = 'posts/editer';
                      $dest_path = 'storage/posts';
 
-                     if(upload_image($input_name, $data, $view, $dest_path)) {
-                         $data['filename'] = FILENAME;
-                         if ($this->postModel->editerPost($data)) {
-                             // Delete old image from server
-                             $old_img = SITE_ROOT . "/storage/posts/" . $data['old_img'];
-                             unlink($old_img);
-                             flash('bio_success', 'Votre bio a été mis à jour');
-                             redirect('posts/dashboard');
-                         } else {
-                             die('Une erreur est survenue. Merci de ressayer');
-                         }
-                     } else if(upload_image($input_name, $data, $view, $dest_path) == false){
-                         flash('format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
-                     }
+                     $img_upload_status = upload_image($input_name, $data, $view, $dest_path);
 
+                     switch ($img_upload_status){
+                         case 'file_format_error':
+                             flash('file_format_error', 'Image extension: ".jpg, .gif, .png"', 'alert alert-danger');
+                             $this->view('posts/editer', $data);
+                             break;
+
+                         case 'file_size_error':
+                             flash('file_size_error', 'File size is larger than the allowed size', 'alert alert-danger');
+                             $this->view('posts/editer', $data);
+                             break;
+
+                         case 'file_exist_error':
+                             flash('file_exist_error', 'File already exists, choose another one', 'alert alert-danger');
+                             $this->view('posts/editer', $data);
+                             break;
+
+                         case 'true':
+                             $data['filename'] = FILENAME;
+                             if ($this->postModel->editerPost($data)) {
+                                 // Delete old image from server
+                                 $old_img = SITE_ROOT . "/storage/posts/" . $data['old_img'];
+                                 unlink($old_img);
+                                 flash('bio_success', 'Votre bio a été mis à jour');
+                                 redirect('posts/dashboard');
+                             } else {
+                                 die('Une erreur est survenue. Merci de ressayer');
+                             }
+                             break;
+
+                         case 'file_upload_error':
+                             flash('upload_error', 'Error while upload image, please try again', 'alert alert-danger');
+                             $this->view('posts/editer', $data);
+                             break;
+
+                         case 'file_input_error':
+                             flash('input_img_error', 'Erreur! Assurez-vous d inclure une bonne image', 'alert alert-danger');
+                             $this->view('posts/editer', $data);
+                             break;
+                     }
                  }
                 // Displaying errors
                 else {
