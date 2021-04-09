@@ -207,4 +207,10 @@ class Utilisateurs extends Controller {
         session_destroy();
         redirect('utilisateurs/connexion');
     }
+
+    // TO DO: delete posts pics if user delete his account without deleting the posts
+    /*
+     * Use the postModel to get the posts by the given user, implement a for loop to iterate on all
+     * possible picture names and delete one by one if it exists
+    */
 }
