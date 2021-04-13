@@ -1064,6 +1064,13 @@ h4.fonction {
   }
 }
 
+@media (min-width: 1400px) {
+  #organisateurs .items {
+    margin: 0 auto;
+    max-width: 1350px;
+  }
+}
+
 /* Commission style */
 
 .panel-group .panel {

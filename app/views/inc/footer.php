@@ -17,10 +17,11 @@
           </div>
           <div>
             <h4>NOUS CONTACTEZ</h4>
-            <form action="<?php ?>" id="contact-form" method="post">
-                <input type="text" name="nom-prenom" placeholder="Nom & Prénom">
+            <form action="<?php echo URLROOT; ?>/utilisateurs/sendMail" id="contact-form" method="post">
+                <input type="text" name="nom_prenom" placeholder="Nom & Prénom">
                 <input type="email" name="email" placeholder="Email">
-                <textarea name="messge" cols="30" rows="5" placeholder="Votre message"></textarea>
+                <input type="text" name="subject" placeholder="Objet du message">
+                <textarea name="message" cols="30" rows="5" placeholder="Votre message"></textarea>
               <input type="submit" class="btn btn-block btn-primary" value="ENVOYEZ">
             </form>
           </div>

@@ -197,6 +197,38 @@ class Utilisateurs extends Controller {
         }
     }
 
+    public function sendMail(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'fullname' => trim($_POST['nom_prenom']),
+                'email'     => trim($_POST['email']),
+                'subject'   => trim($_POST['subject']),
+                'message'   => trim($_POST['message'])
+            ];
+
+            $to = $data['email'];
+            $subject = $data['subject'];
+            $message = $data['message'];
+            $from = "us@acemnews.cf";
+            $headers = "From:" . $from;
+
+            if(mail($to,$subject,$message,$headers)) {
+                die('mail sent');
+                flash('mail_sent', 'Nous avons bien reçu votre message. Nous vous contacterons le plus vite possible', 'alert alert-success');
+                rdirect('pages/accueil');
+            } else {
+                die('mail not sent');
+                flash('mail_error', 'Un problème est survenue, merci de ressayer plus tard', 'alert alert-danger');
+                rdirect('pages/accueil');
+            }
+       } else {
+           die('cant submit infos');
+       }
+    }
+
     public function deconnexion(){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
