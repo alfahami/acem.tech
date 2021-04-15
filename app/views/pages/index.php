@@ -54,10 +54,12 @@
 
                     <?php } endforeach;
                 } ?>
+                <?php if( count($data['all_posts']) > 5 ) : ?>
                 <div id="pagination-button" class="text-center py-1">
                    <a href="javascript:void(0)" style="cursor: default;" title="précédent"><i class="fas fa-arrow-circle-left"></i></a>
                     <a href="<?php echo URLROOT; ?>/accueil/page/2" method="post" id="pagination-form" title="suivant"><i class="fas fa-arrow-circle-right"></i></a>
                 </div>
+                <?php endif; ?>
             </div>
 
 
