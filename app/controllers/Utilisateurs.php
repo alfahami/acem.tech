@@ -234,8 +234,8 @@ class Utilisateurs extends Controller {
             
             
             // Specifying PHPMailer headers
-            $mail->setFrom($data['email'], 'Mailer');
-            $mail->addAddress('us@acem.tech');     //Server Mail
+            $mail->setFrom($data['email'], $data['fullname']);
+            $mail->addAddress('contact@hostprovider.com');     //Server Mail
            
             // Content
         
