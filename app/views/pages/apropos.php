@@ -3,8 +3,12 @@
       <!-- #About Page-->
       <section id="about">
         <div class="container">
+          <?php flash('mail_sent'); ?>
+          <?php flash('mail_error'); ?>
           <div class="page-container">
             <div class="about card bg-light">
+              <?php flash('mail_sent'); ?>
+              <?php flash('mail_error'); ?>
               <div class="p-news">
                 <article>
                   <h1 class="text-primary">A PROPOS D'ACEM NEWS</h1>

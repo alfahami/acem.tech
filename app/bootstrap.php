@@ -9,3 +9,9 @@ require_once    'helpers/upload_image.php';
 require_once    'librairies/Core.php';
 require_once    'librairies/Controller.php';
 require_once    'librairies/Database.php';
+
+// Load PHPMailer 
+require 'librairies/PHPMailer/src/PHPMailer.php';
+require 'librairies/PHPMailer/src/SMTP.php';
+require 'librairies/PHPMailer/src/Exception.php';
+

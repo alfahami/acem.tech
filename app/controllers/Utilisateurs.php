@@ -1,4 +1,9 @@
 <?php
+
+Use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class Utilisateurs extends Controller {
     private $modelUtilisateur;
     private $postModel;
@@ -132,6 +137,7 @@ class Utilisateurs extends Controller {
                 $loggedInUser = $this->modelUtilisateur->connexion($data['email'], $data['password']);
                 if($loggedInUser){
                     $this->createUserSession($loggedInUser);
+                    $now = time();
                 } else {
                     $data['password_err'] = 'Mot de passe incorrect. Veuillez réessayer';
                     $this->view('utilisateurs/connexion', $data);
@@ -200,34 +206,57 @@ class Utilisateurs extends Controller {
 
     public function sendMail(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
+
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'fullname' => trim($_POST['nom_prenom']),
-                'email'     => trim($_POST['email']),
-                'subject'   => trim($_POST['subject']),
-                'message'   => trim($_POST['message'])
+                'fullname' => $_POST['nom_prenom'],
+                'email'     => $_POST['email'],
+                'subject'   => $_POST['subject'],
+                'message'   => $_POST['message']
             ];
 
-            $to = $data['email'];
-            $subject = $data['subject'];
-            $message = $data['message'];
-            $from = "us@acem.tech";
-            $headers = "From:" . $from;
 
-            if(mail($to,$subject,$message,$headers)) {
-                die('mail sent');
-                flash('mail_sent', 'Nous avons bien reçu votre message. Nous vous contacterons le plus vite possible', 'alert alert-success');
-                rdirect('pages/accueil');
-            } else {
-                die('mail not sent');
-                flash('mail_error', 'Un problème est survenue, merci de ressayer plus tard', 'alert alert-danger');
-                rdirect('pages/accueil');
-            }
-       } else {
-           die('cant submit infos');
-       }
+            // Instanciating PHPMailer and passing true to enable showing exceptions
+            $mail = new PHPMailer(true);
+
+            try {
+                
+            // SMTP Configuration
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'cpanel.hostprovider.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'email@server.com';                     //SMTP username
+            $mail->Password   = 'password_goes_here';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;  
+            
+            
+            // Specifying PHPMailer headers
+            $mail->setFrom($data['email'], 'Mailer');
+            $mail->addAddress('us@acem.tech');     //Server Mail
+           
+            // Content
+        
+            $mail->Subject = $data['subject'];
+            $mail->Body    = $data['message'];
+
+            //$mail->AltBody = $data['message'];
+           
+            
+            $mail->send();
+            flash('mail_sent', 'Nous avons bien reçu votre message. Nous vous contacterons le plus vite possible', 'alert alert-success');
+            $this->view('pages/apropos');
+            
+        } catch (Exception $e) {
+            flash('mail_error', 'Un problème est survenue, merci de ressayer plus tard', 'alert alert-danger');
+            $this->view('pages/apropos');
+        }
+
+        } else {
+            redirect('pages/index');
+        }
     }
 
     public function deconnexion(){
