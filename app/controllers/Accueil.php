@@ -10,14 +10,13 @@ class Accueil extends Controller {
     }
     public function index() {
         $accueilModel = $this->model('Accueils');
-        $allPosts = $this->accueilModel->getPosts();
+        
 
 
        // $user = $userMoedl->getUserById($_SESSION['user_id']);
-        $posts = $accueilModel->pagination(0, 5);
+        $posts = $accueilModel->postsByUsers();
 
         $data = [
-            'all_posts' => $allPosts,
             'current_home' => 'current',
             'posts' => $posts,
             //'user' => $user

@@ -20,8 +20,11 @@
         <div class="article-container py-1">
             <div class="articles">
                 <?php if (!empty($data)) {
-                    foreach($data['posts'] as $post) :
-                        if($post->counter %2 != 0)  { ?>
+                    $i = 1;
+                    $j = 0;
+                    foreach($data['posts'] as $post) { 
+                    if($j < 5) {
+                        if($i % 2 != 0)  { ?>
 
                             <article class="card bg-light">
                                 <div class="card-bkgd-image" style='background-image: url("<?php echo URLROOT; ?>/storage/posts/<?php echo $post->img_name; ?>")'></div>
@@ -52,9 +55,14 @@
 
                             </article>
 
-                    <?php } endforeach;
-                } ?>
-                <?php if( count($data['all_posts']) > 5 ) : ?>
+                    <?php }
+                        }
+                    $i++;
+                    $j++;
+                    }
+                           
+                    } ?>
+                <?php if( count($data['posts']) > 5 ) : ?>
                 <div id="pagination-button" class="text-center py-1">
                    <a href="javascript:void(0)" style="cursor: default;" title="précédent"><i class="fas fa-arrow-circle-left"></i></a>
                     <a href="<?php echo URLROOT; ?>/accueil/page/2" method="post" id="pagination-form" title="suivant"><i class="fas fa-arrow-circle-right"></i></a>

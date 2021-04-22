@@ -156,6 +156,7 @@ class Utilisateurs extends Controller {
         $_SESSION['user_fname']  = $user->firstname;
         $_SESSION['user_lname']  = $user->lastname;
         $_SESSION['user_joined_at']   = $user->created_at;
+        $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
         $_SESSION['user_bio']         = $user->bio;
         redirect('posts/index');
     }
@@ -212,7 +213,7 @@ class Utilisateurs extends Controller {
             $to = $data['email'];
             $subject = $data['subject'];
             $message = $data['message'];
-            $from = "us@acemnews.cf";
+            $from = "us@acem.tech";
             $headers = "From:" . $from;
 
             if(mail($to,$subject,$message,$headers)) {
