@@ -1119,7 +1119,7 @@ textarea::placeholder {
 }
 #categorie .page-container .articles article,
 #resultat .page-container .articles article{
-  max-height: 480px;
+  max-height: 500px;
 }
 
 #categorie .articles .error-category,

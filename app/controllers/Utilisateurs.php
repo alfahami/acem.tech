@@ -137,7 +137,6 @@ class Utilisateurs extends Controller {
                 $loggedInUser = $this->modelUtilisateur->connexion($data['email'], $data['password']);
                 if($loggedInUser){
                     $this->createUserSession($loggedInUser);
-                    $now = time();
                 } else {
                     $data['password_err'] = 'Mot de passe incorrect. Veuillez réessayer';
                     $this->view('utilisateurs/connexion', $data);
@@ -154,17 +153,6 @@ class Utilisateurs extends Controller {
             ];
             $this->view('utilisateurs/connexion', $data);
         }
-    }
-
-    public function createUserSession($user){
-        $_SESSION['user_id']     = $user->id;
-        $_SESSION['user_email']  = $user->email;
-        $_SESSION['user_fname']  = $user->firstname;
-        $_SESSION['user_lname']  = $user->lastname;
-        $_SESSION['user_joined_at']   = $user->created_at;
-        $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
-        $_SESSION['user_bio']         = $user->bio;
-        redirect('posts/index');
     }
 
     public function profile($user_id){
@@ -225,7 +213,7 @@ class Utilisateurs extends Controller {
             // SMTP Configuration
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'cpanel.hostprovider.com';                     //Set the SMTP server to send through
+            $mail->Host       = 'smtp.hostprovider.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'email@server.com';                     //SMTP username
             $mail->Password   = 'password_goes_here';                               //SMTP password
@@ -234,8 +222,8 @@ class Utilisateurs extends Controller {
             
             
             // Specifying PHPMailer headers
-            $mail->setFrom($data['email'], $data['fullname']);
-            $mail->addAddress('contact@hostprovider.com');     //Server Mail
+            $mail->setFrom($data['email'], 'Mailer');
+            $mail->addAddress('server@mail.com');     //Server Mail
            
             // Content
         
@@ -257,6 +245,16 @@ class Utilisateurs extends Controller {
         } else {
             redirect('pages/index');
         }
+    }
+
+    public function createUserSession($user){
+        $_SESSION['user_id']     = $user->id;
+        $_SESSION['user_email']  = $user->email;
+        $_SESSION['user_fname']  = $user->firstname;
+        $_SESSION['user_lname']  = $user->lastname;
+        $_SESSION['user_joined_at']   = $user->created_at;
+        $_SESSION['user_bio']         = $user->bio;
+        redirect('posts/index');
     }
 
     public function deconnexion(){

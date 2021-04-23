@@ -6,6 +6,7 @@
              <?php flash('email_err'); ?>
            <?php flash('aucun_utilisateur'); ?>
            <?php flash('inscription_reussi'); ?>
+           <?php flash('session_timeout'); ?>
            <h3 class="text-center">Connectez-vous</h3>
            <div class="form-group">
              <label for="email">Email</label>

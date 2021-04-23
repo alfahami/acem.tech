@@ -75,3 +75,17 @@ function formatDateMin($date) {
     echo DateTime::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y H:i');
 }
 
+// Expiring session after 30mn using timestamp
+
+
+    $expiry = 20 ;//session expiry required after 30 mins
+    if (isset($_SESSION['LAST']) && (time() - $_SESSION['LAST'] > $expiry)) {
+        session_unset();
+        session_destroy();
+        redirect('utilisateurs/connexion');
+        flash('session_timeout', 'Votre session a expirer! Merci de vous reconnectez');
+    }
+    $_SESSION['LAST'] = time();
+   
+
+
