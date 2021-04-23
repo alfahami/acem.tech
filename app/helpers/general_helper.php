@@ -78,7 +78,7 @@ function formatDateMin($date) {
 // Expiring session after 30mn using timestamp
 
 
-    $expiry = 20 ;//session expiry required after 30 mins
+    $expiry = 1800 ;//session expiry required after 30 mins
     if (isset($_SESSION['LAST']) && (time() - $_SESSION['LAST'] > $expiry)) {
         session_unset();
         session_destroy();
