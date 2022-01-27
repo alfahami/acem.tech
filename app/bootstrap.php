@@ -15,7 +15,9 @@ require_once 'config/config.php';
 // require 'librairies/PHPMailer/src/SMTP.php';
 // require 'librairies/PHPMailer/src/Exception.php';
 
-spl_autoload_register();
+spl_autoload_register(AutoLoader::helperLoader);
+spl_autoload_register(AutoLoader::librairieLoader);
+spl_autoload_register(AutoLoader::mailerLoader);
 
 class AutoLoader {
     public static function helperLoader($className) {
