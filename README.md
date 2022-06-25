@@ -2,7 +2,7 @@
 
 This repo is no longer support and doesn't receive bug fixing.\
 It has been transfered to [acemtech](https://github.com/acemtech/acemtech)'s organization profile.\
-Please find new version [here](https://github.com/acemtech/acemtech) with new releases and bug fixing.\
+Please find new version [here](https://github.com/acemtech/acemtech) with new releases and bug fixing.
 
 
 Design & Code of the front-end of acemfes news website\
